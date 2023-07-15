@@ -1,12 +1,13 @@
-import Image from 'next/image'
 import Navbar from './components/Navbar'
 import PrimaryHero from './components/PrimaryHero'
+import Directory from './components/Directory'
 
 export default function Home() {
   return (
-    <div>
+    <div className='font-serif'>
       <Navbar />
       <PrimaryHero />
+      <Directory />
     </div>
     )
 }
