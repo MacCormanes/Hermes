@@ -16,15 +16,17 @@
 }
 
 @layer components {
-  .card-transition {
-    @apply relative inset-0 transform rounded-3xl object-cover object-top opacity-100 shadow-2xl brightness-50 filter transition-all duration-700 hover:opacity-90;
+  .card-container-transition {
+    @apply flex transform items-center justify-center rounded-3xl transition-all duration-700 hover:scale-105 m-3;
   }
 
-  .card-container-transition {
-    @apply flex transform items-center justify-center rounded-3xl text-stone-100 transition-all duration-700 hover:scale-105 m-3;
+  .card-transition {
+    @apply relative inset-0 transform rounded-3xl object-cover shadow-2xl ;
   }
+
 
   .card-text {
     @apply pointer-events-none absolute text-center text-6xl font-normal text-stone-100;
   }
+
 }
