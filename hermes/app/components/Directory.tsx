@@ -10,7 +10,7 @@ const Directory = () => {
         <div className="relative row-span-6 col-span-4 shadow-2xl rounded-3xl">
           <Image
             src="/content/women-category2.jpg"
-            layout="fill"
+            fill={true}
             alt="womens"
             className="rounded-3xl object-cover object-top"
           />
@@ -18,7 +18,7 @@ const Directory = () => {
         <div className="relative row-span-3 col-span-3 shadow-xl rounded-3xl">
           <Image
             src="/content/bags-category2.jpg"
-            layout="fill"
+            fill={true}
             alt="bags"
             className="rounded-3xl object-cover"
           />
@@ -26,7 +26,7 @@ const Directory = () => {
         <div className="relative row-span-3 col-span-3 shadow-xl rounded-3xl">
           <Image
             src="/content/hats-category2.jpg"
-            layout="fill"
+            fill={true}
             alt="bags"
             className="rounded-3xl object-cover object-top"
           />

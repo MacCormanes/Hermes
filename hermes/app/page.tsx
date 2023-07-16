@@ -4,7 +4,7 @@ import Directory from './components/Directory'
 
 export default function Home() {
   return (
-    <div className='font-serif'>
+    <div className='font-spline'>
       <Navbar />
       <PrimaryHero />
       <Directory />

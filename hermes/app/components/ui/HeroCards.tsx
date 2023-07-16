@@ -8,7 +8,7 @@ const HeroCards = () => {
         <div className="relative w-44 h-64 shadow-lg rounded-3xl">
           <Image
             src="/content/men1-copy.jpg"
-            layout="fill"
+            fill={true}
             alt="Clothing"
             className="rounded-3xl object-cover"
           />
@@ -16,7 +16,7 @@ const HeroCards = () => {
         <div className="relative w-44 h-64 shadow-lg rounded-3xl">
           <Image
             src="/content/men2-copy.jpg"
-            layout="fill"
+            fill={true}
             alt="Clothing"
             className="rounded-3xl object-cover"
           />
@@ -26,7 +26,7 @@ const HeroCards = () => {
         <div className="relative w-44 h-64 gap-y-5 shadow-lg rounded-3xl mb-5">
           <Image
             src="/content/women4-copy.jpg"
-            layout="fill"
+            fill={true}
             alt="Clothing"
             className="rounded-3xl object-cover"
           />
@@ -34,7 +34,7 @@ const HeroCards = () => {
         <div className="relative w-44 h-64 gap-y-5 shadow-lg rounded-3xl mb-5">
           <Image
             src="/content/men3-copy.jpg"
-            layout="fill"
+            fill={true}
             alt="Clothing"
             className="rounded-3xl object-cover"
           />
@@ -42,7 +42,7 @@ const HeroCards = () => {
         <div className="relative w-44 h-64 gap-y-5 shadow-lg rounded-3xl">
           <Image
             src="/content/women3-copy.jpg"
-            layout="fill"
+            fill={true}
             alt="Clothing"
             className="rounded-3xl object-cover"
           />
@@ -52,7 +52,7 @@ const HeroCards = () => {
         <div className="relative w-44 h-64 shadow-lg rounded-3xl">
           <Image
             src="/content/women1-copy.jpg"
-            layout="fill"
+            fill={true}
             alt="Clothing"
             className="rounded-3xl object-cover"
           />
@@ -60,7 +60,7 @@ const HeroCards = () => {
         <div className="relative w-44 h-64 shadow-lg rounded-3xl">
           <Image
             src="/content/women2-copy.jpg"
-            layout="fill"
+            fill={true}
             alt="Clothing"
             className="rounded-3xl object-cover"
           />

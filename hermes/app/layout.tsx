@@ -1,8 +1,11 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Spline_Sans_Mono } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+const spline = Spline_Sans_Mono({
+  subsets: ['latin'],
+  variable: '--font-spline',
+})
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${spline.variable}`}>{children}</body>
     </html>
   )
 }
