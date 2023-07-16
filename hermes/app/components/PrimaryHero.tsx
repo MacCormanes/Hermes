@@ -1,5 +1,6 @@
 import React from 'react'
 import HeroCards from './ui/HeroCards'
+import AnimateOnScroll from './ui/Animations/AnimationOnScroll';
 
 const PrimaryHero = () => {
   const cardsStyles = {
@@ -15,7 +16,9 @@ const PrimaryHero = () => {
         <p className='text-xl font-medium text-stone-700'>who you are. Wear it proud!</p>
       </section>
       <div className='w-1/2'>
-        <HeroCards />
+        <AnimateOnScroll>
+          <HeroCards />
+        </AnimateOnScroll>
       </div>
     </div>
   )

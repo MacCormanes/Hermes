@@ -1,6 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Spline_Sans_Mono } from 'next/font/google'
+import Head from 'next/head'
 
 const spline = Spline_Sans_Mono({
   subsets: ['latin'],
