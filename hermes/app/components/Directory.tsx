@@ -36,7 +36,7 @@ const Directory = () => {
             <h1 className="card-text mb-1 text-2xl">
               New Arrivals
             </h1>
-            <h3 className="card-text mb-4 text-sm">Shop Now</h3>
+            <h3 className="card-text mb-4 text-sm text-stone-300">Shop Now</h3>
           </div>
           <div className="card-container-transition col-span-4 row-span-3 shadow-md shadow-slate-600/70">
             <Image
@@ -47,7 +47,7 @@ const Directory = () => {
             />
             <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-stone-900 to-stone-400 opacity-70 transition-all duration-700 hover:opacity-40"></div>
             <h1 className="card-text mb-1 text-2xl">Womens</h1>
-            <h3 className="card-text mb-4 text-sm">Shop Now</h3>
+            <h3 className="card-text mb-4 text-sm text-stone-300">Shop Now</h3>
           </div>
           <div className="card-container-transition col-span-4 row-span-3 shadow-md shadow-slate-600/70">
             <Image
@@ -58,7 +58,7 @@ const Directory = () => {
             />
             <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-stone-900 to-stone-400 opacity-70 transition-all duration-700 hover:opacity-40"></div>
             <h1 className="card-text mb-1 text-2xl">Mens</h1>
-            <h3 className="card-text mb-4 text-sm">Shop Now</h3>
+            <h3 className="card-text mb-4 text-sm text-stone-300">Shop Now</h3>
           </div>
         </div>
       </AnimationOnScroll>

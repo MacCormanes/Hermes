@@ -1,7 +1,7 @@
 import Navbar from './components/Navbar'
 import PrimaryHero from './components/PrimaryHero'
 import Directory from './components/Directory'
-import SecondaryHero from './components/ui/SecondaryHero'
+import SecondaryHero from './components/ui/SecondaryHero';
 
 
 export default function Home() {
