@@ -6,33 +6,33 @@ import Bag from "./ui/Bag";
 
 const Navbar = () => {
   return (
-    <div className="bg-slate-100 flex justify-between items-center p-3">
+    <div className="bg-orange-50 flex justify-between items-center p-3 text-orange-950">
       <div className="flex items-center space-x-6">
         <a href="" className="w-24 ml-7 items-center">
           <Image
             src="/hermes.svg"
-            width={90}
-            height={90}
+            width={70}
+            height={70}
             alt="Hermes Logo"
           ></Image>
         </a>
-        <Link className="text-black" href="/">
+        <Link className="" href="/">
           Men
         </Link>
-        <Link className="text-black" href="/">
+        <Link className="" href="/">
           Women
         </Link>
-        <Link className="text-black" href="/">
+        <Link className="" href="/">
           About
         </Link>
-        <Link className="text-black" href="/">
+        <Link className="" href="/">
           Men
         </Link>
       </div>
 
       <div className="flex justify-center items-center">
         <div className="flex">
-          <Link className="text-black px-3" href="/">
+          <Link className=" px-3" href="/">
             Sign in
           </Link>
           <Image
@@ -41,13 +41,13 @@ const Navbar = () => {
             width={20}
             height={20}
             alt="Hermes Logo"
-          ></Image>
-          <Link className="text-black pl-3 pr-6" href="/">
+          />
+          <Link className=" pl-3 pr-6" href="/">
             Create Account
           </Link>
         </div>
 
-        <select className="select select-sm text-black">
+        <select className="select select-sm ">
           <option>USD</option>
           <option>Php</option>
           <option>Gbp</option>

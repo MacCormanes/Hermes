@@ -1,7 +1,8 @@
 import Navbar from './components/Navbar'
 import PrimaryHero from './components/PrimaryHero'
 import Directory from './components/Directory'
-import SecondaryHero from './components/ui/SecondaryHero';
+import SecondaryHero from './components/SecondaryHero';
+import Footer from './components/Footer';
 
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
       <PrimaryHero />
       <Directory />
       <SecondaryHero />
+      <Footer />
     </div>
     )
 }

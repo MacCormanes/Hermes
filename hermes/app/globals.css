@@ -3,31 +3,31 @@
 @tailwind utilities;
 
 @layer utilities {
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+  
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
   }
-
-  /* Hide scrollbar for IE, Edge and Firefox */
-  .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+  
+  @layer components {
+    .card-container-transition {
+      @apply transform flex flex-col justify-end items-center rounded-3xl transition-all duration-700 hover:scale-105 m-3;
+    }
+  
+    .card-transition {
+      @apply relative inset-0 transform rounded-3xl object-cover;
+    }
+  
+  
+    .card-text {
+      @apply pointer-events-none relative text-orange-200 ;
+    }
+  
   }
-}
-
-@layer components {
-  .card-container-transition {
-    @apply transform flex flex-col justify-end items-start rounded-3xl transition-all duration-700 hover:scale-105 m-3;
-  }
-
-  .card-transition {
-    @apply relative inset-0 transform rounded-3xl object-cover;
-  }
-
-
-  .card-text {
-    @apply pointer-events-none relative text-stone-200 ml-5;
-  }
-
-
-}
+  
