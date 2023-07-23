@@ -29,5 +29,8 @@
       @apply pointer-events-none relative text-orange-200 ;
     }
   
+    .btn {
+      @apply w-32 uppercase text-xs bg-orange-100 text-orange-900 hover:bg-orange-300 transition-all duration-500;
+    }
   }
   

@@ -10,8 +10,7 @@ const Bag = () => {
             src="/icons/bag.svg"
             width={25}
             height={25}
-            alt="Search"/>
-        <BagCount />
+            alt="bag"/>
     </div>
   )
 }
