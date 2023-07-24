@@ -80,23 +80,25 @@ const SignIn = () => {
             </Link>
           </div>
           <div className="mt-10 flex gap-4">
-            <Button
-              onClick={(e) => {
-                signIn("github");
-              }}
+          <Button
               type="button"
-              className="w-1/2 bg-slate-700 shadow-md transition-all duration-500 hover:bg-slate-600"
+              className="w-1/2 bg-blue-500 shadow-md transition-all duration-500 hover:bg-blue-400"
+              onClick={(e) => {
+                signIn('facebook')
+              }}
             >
-              Github
+              Facebook
             </Button>
             <Button
               type="button"
-              className="w-1/2 bg-blue-500 shadow-md transition-all duration-500 hover:bg-blue-400"
+              className="w-1/2 bg-orange-400 shadow-md transition-all duration-500 hover:bg-orange-300 text-orange-950"
+              onClick={(e) => {
+                signIn('google')
+              }}
             >
               Google
             </Button>
           </div>
-          <SignOutButton />
         </div>
       </div>
     );
