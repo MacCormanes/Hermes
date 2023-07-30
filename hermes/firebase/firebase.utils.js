@@ -6,6 +6,8 @@ import {
   OAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
 } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
@@ -45,6 +47,16 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
   if(!email || !password) return;
 
   return await signInWithEmailAndPassword(auth, email, password);
+}
+
+// SignOut Method
+export const signOutUser = async () => {
+  await signOut(auth);
+}
+
+// AuthStateListener
+export const onAuthStateChangedListener = (callback) => {
+  onAuthStateChanged(auth, callback);
 }
 
 // Add new user to firestore and firebase auth users

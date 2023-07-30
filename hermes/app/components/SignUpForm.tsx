@@ -14,7 +14,6 @@ import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from "@/firebase/firebase.utils";
-import { UserCredential } from "firebase/auth";
 import { useRouter } from "next/navigation";
 
 type FormValues = {
@@ -24,17 +23,15 @@ type FormValues = {
   confirmPassword: string;
 };
 
-type UserType = {
-  user: UserCredential | undefined;
-};
 
 const SignUpForm = () => {
   const router = useRouter();
   const form = useForm<FormValues>();
-  const { register, handleSubmit, formState, reset } = form;
+  const { register, handleSubmit, formState } = form;
   const { errors } = formState;
 
   const { toast } = useToast();
+
 
   const onSubmit = async (data: FormValues) => {
     const {name, email, password, confirmPassword} = data
@@ -59,9 +56,9 @@ const SignUpForm = () => {
       toast({
         variant: 'success',
         title: "Account Creation Successful",
-        action: <ToastAction altText="Close" className="border-orange-950 hover:bg-green-400" onClick={() => router.push('/signIn')}>Close</ToastAction>,
+        action: <ToastAction altText="Close" className="border-orange-950 hover:bg-green-400" onClick={() => router.push('/')}>Close</ToastAction>,
       });
-      setTimeout(()=>{router.push('/signIn')}, 5000)
+      setTimeout(()=>{router.push('/')}, 5000)
     } catch (error: any) {
       if (error?.code === "auth/email-already-in-use"){
         toast({

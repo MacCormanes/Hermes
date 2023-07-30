@@ -17,41 +17,55 @@ import {
 import { getRedirectResult } from "firebase/auth";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { SubmitHandler } from "react-hook-form";
 import { toast } from "@/components/ui/use-toast";
 import { ToastAction } from "@/components/ui/toast";
 import { Toaster } from "@/components/ui/toaster";
+import { useRouter } from "next/navigation";
 
 type FormTypes = {
-  email: string
-  password: string
+  email: string;
+  password: string;
 };
 
-
 const SignIn = () => {
-  
   const form = useForm<FormTypes>();
-  const { register, handleSubmit, reset } = form;
-  
+  const { register, handleSubmit } = form;
+
+  const router = useRouter();
+
   const onSubmit = async (data: FormTypes) => {
     try {
-      const response = await signInAuthUserWithEmailAndPassword(data.email, data.password);
-      console.log(response);
-    } catch (error:any) {
+      const response = await signInAuthUserWithEmailAndPassword(
+        data.email,
+        data.password
+      );
+      const user = response?.user;
+      if (user) {
+        router.push('/');
+      } 
+    } catch (error: any) {
       switch (error.code) {
-        case 'auth/wrong-password':
+        case "auth/wrong-password":
           toast({
-            variant: 'destructive',
+            variant: "destructive",
             title: "Incorrect Password",
-            action: <ToastAction altText="Close" className="border-orange-950">Try Again</ToastAction>,
+            action: (
+              <ToastAction altText="Close" className="border-orange-950">
+                Try Again
+              </ToastAction>
+            ),
           });
           break;
-        case 'auth/user-not-found':
+        case "auth/user-not-found":
           toast({
-            variant: 'destructive',
+            variant: "destructive",
             title: "User not found",
-            description:"Perhaps create an account first",
-            action: <ToastAction altText="Close" className="border-orange-950">Try Again</ToastAction>,
+            description: "Perhaps create an account first",
+            action: (
+              <ToastAction altText="Close" className="border-orange-950">
+                Try Again
+              </ToastAction>
+            ),
           });
           break;
         default:
@@ -60,11 +74,15 @@ const SignIn = () => {
     }
   };
 
+  const signInWithGoogleRedirectHandler = () => {
+    signInWithGoogleRedirect();
+    router.push('/');
+  }
+
   const fetchAuth = async () => {
     const response = await getRedirectResult(auth);
     if (response) {
-      const userDocRef = await createUserDocumentFromAuth(response.user);
-      console.log(userDocRef);
+      await createUserDocumentFromAuth(response.user);
     }
   };
   useEffect(() => {
@@ -143,7 +161,7 @@ const SignIn = () => {
           <Button
             type="button"
             className="w-1/2 transition-all duration-500 bg-orange-400 shadow-md hover:bg-orange-300 text-orange-950"
-            onClick={signInWithGoogleRedirect}
+            onClick={signInWithGoogleRedirectHandler}
           >
             Google
           </Button>
