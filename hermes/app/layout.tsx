@@ -1,7 +1,6 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Spline_Sans_Mono } from 'next/font/google'
-import { AuthProvider } from './context/AuthProvider'
 
 const spline = Spline_Sans_Mono({
   subsets: ['latin'],
@@ -21,9 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${spline.variable}`}>
-        <AuthProvider>
           {children}
-        </AuthProvider>
       </body>
     </html>
   )

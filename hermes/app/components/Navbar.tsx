@@ -4,11 +4,9 @@ import Image from "next/image";
 import SearchButton from "./ui/SearchButton";
 import Bag from "./ui/Bag";
 import NavbarSession from "./ui/NavbarSession";
-import { getServerSession } from "next-auth";
-import { options } from "../api/auth/[...nextauth]/options";
+import { Button } from "@/components/ui/button";
 
 const Navbar = async () => {
-  const session = await getServerSession(options)
   return (
     <div className="bg-orange-50 flex justify-between items-center p-3 text-orange-950">
       <div className="flex items-center space-x-6 w-1/3">
@@ -35,7 +33,7 @@ const Navbar = async () => {
       </div>
 
       <div className="flex justify-end items-center w-2/3">
-        <NavbarSession user={session?.user}/>
+        <Link href='/signIn' className="mr-5">Sign In</Link>
         <select className="select select-sm ">
           <option>USD</option>
           <option>Php</option>

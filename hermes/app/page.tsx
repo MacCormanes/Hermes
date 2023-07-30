@@ -6,7 +6,7 @@ import Footer from "./components/Footer";
 
 export default async function Home() {
   return (
-    <div className="font-spline">
+    <div className="font-spline debug-screens">
         <Navbar />
         <PrimaryHero />
         <Directory />
