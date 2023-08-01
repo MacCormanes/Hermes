@@ -10,17 +10,21 @@ import { Button } from "@/components/ui/button";
 
 const Footer = () => {
   return (
-    
     <div className="h-[350px] flex flex-col justify-center bg-orange-200 text-orange-950">
-      <div className="flex flex-row justify-center gap-x-8 mb-10">
-        <div className="w-2/5 flex flex-col items-center gap-2">
+      <div className="flex flex-row justify-center mb-10 gap-x-8">
+        <div className="flex flex-col items-center w-2/5 gap-2">
           <h2 className="uppercase">Newsletter</h2>
-          <p className="text-[11px]">Receive our newsletter, collections and surprises</p>
-          <Input type="email" placeholder="Your Email" className="w-3/4"/>
+          <p className="text-[11px]">
+            Receive our newsletter, collections and surprises
+          </p>
+          <div className="flex w-4/5 gap-2">
+            <Input type="email" placeholder="Your Email" className="w-3/4" />
+            <Button className="text-xs uppercase transition-all duration-500 bg-orange-400 text-orange-950 hover:bg-orange-500"> Subscribe </Button>
+          </div>
         </div>
-        <div className="flex flex-col w-2/5 items-center">
+        <div className="flex flex-col items-center w-2/5">
           <h3 className="uppercase">Follow us</h3>
-          <div className="flex w-full justify-center gap-10 mt-5">
+          <div className="flex justify-center w-full gap-10 mt-5">
             <Link href="https://www.facebook.com/hermes/">
               <Image src={fb} alt="facebook" width={32} height={32} />
             </Link>
@@ -36,27 +40,15 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="mx-auto w-2/3 flex flex-col items-center gap-2">
+      <div className="flex flex-col items-center w-2/3 gap-2 mx-auto">
         <h2 className="uppercase">Customer Service</h2>
-        <Button className="w-32 uppercase text-xs bg-orange-100 text-orange-900 hover:bg-orange-300 transition-all duration-500">Contact Us</Button>
+        <Button className="w-32 h-auto text-xs text-orange-900 uppercase transition-all duration-500 bg-orange-100 hover:bg-orange-300">
+          Contact Us
+        </Button>
         <div className="flex">
-          <h2>800-441-4488</h2>
-          <Image
-            className=""
-            src="/icons/divider.svg"
-            width={20}
-            height={20}
-            alt="Hermes Logo"
-          />
-          <p>Monday to Friday: 9-am - 6px EST</p>
-          <Image
-            className=""
-            src="/icons/divider.svg"
-            width={20}
-            height={20}
-            alt="Hermes Logo"
-          />
-          <p>Saturday: 10am - 6pm EST</p>
+          <p>800-441-4488 |</p>
+          <p>| Monday to Friday: 9-am - 6px EST |</p>
+          <p>| Saturday: 10am - 6pm EST </p>
         </div>
       </div>
       <div className="flex justify-end mt-10 text-xs">

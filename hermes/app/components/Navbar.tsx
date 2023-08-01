@@ -15,13 +15,16 @@ const Navbar = () => {
   return (
     <div className="flex items-center justify-between p-3 bg-orange-50 text-orange-950">
       <div className="flex items-center w-1/3 space-x-6">
-        <a href="" className="items-center w-24 ml-7">
-          <Image
-            src="/hermes.svg"
-            width={70}
-            height={70}
-            alt="Hermes Logo"
-          ></Image>
+        <a href="/" className="">
+          <div className="relative w-[77px] h-[77px]">
+            <Image
+              src="/hermes.svg"
+              fill
+              sizes="30vw"
+              priority={false}
+              alt="Hermes Logo"
+            />
+          </div>
         </a>
         <Link className="" href="/">
           Men
@@ -32,8 +35,8 @@ const Navbar = () => {
         <Link className="" href="/">
           About
         </Link>
-        <Link className="" href="/">
-          Men
+        <Link className="" href="/shop">
+          Shop
         </Link>
       </div>
 
