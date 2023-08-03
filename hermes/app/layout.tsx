@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Spline_Sans_Mono } from 'next/font/google'
 import { UserProvider } from './context/user.context'
 import { ProductsProvider } from './context/products.context'
+import { CartProvider } from './context/cart.context'
 
 const spline = Spline_Sans_Mono({
   subsets: ['latin'],
@@ -24,7 +25,9 @@ export default function RootLayout({
       <body className={`${spline.variable}`}>
         <UserProvider>
           <ProductsProvider>
-            {children}
+            <CartProvider>
+              {children}
+            </CartProvider>
           </ProductsProvider>
         </UserProvider>
       </body>
