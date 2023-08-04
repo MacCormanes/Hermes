@@ -43,9 +43,9 @@
       "name": "Liverpool Coat",
       "thumbnail": "https://assets.hermes.com/is/image/hermesproduct/liverpool-coat--361040H302-worn-2-0-0-400-400_g.jpg",
       "imageUrls": [
-        "https://assets.hermes.com/is/image/hermesproduct/liverpool-coat--361040H302-worn-2-0-0-800-800_g.jpg",
         "https://assets.hermes.com/is/image/hermesproduct/liverpool-coat--361040H302-worn-3-0-0-800-800_g.jpg",
-        "https://assets.hermes.com/is/image/hermesproduct/liverpool-coat--361040H302-worn-4-0-0-800-800_g.jpg"
+        "https://assets.hermes.com/is/image/hermesproduct/liverpool-coat--361040H302-worn-4-0-0-800-800_g.jpg",
+        "https://assets.hermes.com/is/image/hermesproduct/liverpool-coat--361040H302-worn-2-0-0-800-800_g.jpg"
       ],
       "price": 5750,
       "realProductURL": "https://www.hermes.com/us/en/product/liverpool-coat-H361040H30246/" 
@@ -114,6 +114,75 @@
         ],
       "price": 6550,
       "realProductURL": "https://www.hermes.com/us/en/product/poche-en-cavale-hooded-parka-H352540HH3846/" 
+    },
+    {
+      "id": 10,
+      "name": "Maillons En Boucle Aero Zipped Jacket",
+      "thumbnail": "https://assets.hermes.com/is/image/hermesproduct/maillons-en-boucle-aero-zipped-jacket--357540HA4G-worn-1-0-0-400-400_g.jpg",
+      "imageUrls": [
+        "https://assets.hermes.com/is/image/hermesproduct/maillons-en-boucle-aero-zipped-jacket--357540HA4G-worn-1-0-0-800-800_g.jpg",
+        "https://assets.hermes.com/is/image/hermesproduct/maillons-en-boucle-aero-zipped-jacket--357540HA4G-worn-2-0-0-800-800_g.jpg",
+        "https://assets.hermes.com/is/image/hermesproduct/maillons-en-boucle-aero-zipped-jacket--357540HA4G-worn-3-0-0-800-800_g.jpg"
+        ],
+      "price": 2275,
+      "realProductURL": "https://www.hermes.com/us/en/product/maillons-en-boucle-aero-zipped-jacket-H357540HA4GXS/" 
+    },
+    {
+      "id": 11,
+      "name": "Quilted Vest",
+      "thumbnail": "https://assets.hermes.com/is/image/hermesproduct/quilted-vest--362600HG4T-worn-1-0-0-400-400_g.jpg",
+      "imageUrls": [
+        "https://assets.hermes.com/is/image/hermesproduct/quilted-vest--362600HG4T-worn-1-0-0-800-800_g.jpg",
+        "https://assets.hermes.com/is/image/hermesproduct/quilted-vest--362600HG4T-worn-3-0-0-800-800_g.jpg",
+        "https://assets.hermes.com/is/image/hermesproduct/quilted-vest--362600HG4T-worn-4-0-0-800-800_g.jpg",
+        "https://assets.hermes.com/is/image/hermesproduct/quilted-vest--362600HG4T-worn-5-0-0-800-800_g.jpg",
+        "https://assets.hermes.com/is/image/hermesproduct/quilted-vest--362600HG4T-worn-6-0-0-800-800_g.jpg"
+
+        ],
+      "price": 4125,
+      "realProductURL": "https://www.hermes.com/us/en/product/quilted-vest-H362600HG4T48/" 
+    },
+    {
+      "id": 12,
+      "name": "Quilted Rib-trim Hooded Jacket",
+      "thumbnail": "https://assets.hermes.com/is/image/hermesproduct/quilted-rib-trim-hooded-jacket--362620HG4N-worn-1-0-0-400-400_g.jpg",
+      "imageUrls": [
+        "https://assets.hermes.com/is/image/hermesproduct/quilted-rib-trim-hooded-jacket--362620HG4N-worn-1-0-0-800-800_g.jpg",
+        "https://assets.hermes.com/is/image/hermesproduct/quilted-rib-trim-hooded-jacket--362620HG4N-worn-2-0-0-800-800_g.jpg",
+        "https://assets.hermes.com/is/image/hermesproduct/quilted-rib-trim-hooded-jacket--362620HG4N-worn-3-0-0-800-800_g.jpg",
+        "https://assets.hermes.com/is/image/hermesproduct/quilted-rib-trim-hooded-jacket--362620HG4N-worn-4-0-0-800-800_g.jpg",
+        "https://assets.hermes.com/is/image/hermesproduct/quilted-rib-trim-hooded-jacket--362620HG4N-worn-5-0-0-800-800_g.jpg"
+
+        ],
+      "price": 5600,
+      "realProductURL": "https://www.hermes.com/us/en/product/quilted-rib-trim-hooded-jacket-H362620HG4N48/" 
+    },
+    {
+      "id": 13,
+      "name": "Hooded Jogging Jacket",
+      "thumbnail": "https://assets.hermes.com/is/image/hermesproduct/hooded-jogging-jacket--357210HA11-worn-1-0-0-400-400_g.jpg",
+      "imageUrls": [
+        "https://assets.hermes.com/is/image/hermesproduct/hooded-jogging-jacket--357210HA11-worn-1-0-0-800-800_g.jpg",
+        "https://assets.hermes.com/is/image/hermesproduct/hooded-jogging-jacket--357210HA11-worn-2-0-0-800-800_g.jpg",
+        "https://assets.hermes.com/is/image/hermesproduct/hooded-jogging-jacket--357210HA11-worn-3-0-0-800-800_g.jpg",
+        "https://assets.hermes.com/is/image/hermesproduct/hooded-jogging-jacket--357210HA11-worn-4-0-0-800-800_g.jpg",
+        "https://assets.hermes.com/is/image/hermesproduct/hooded-jogging-jacket--357210HA11-worn-5-0-0-800-800_g.jpg"
+        ],
+      "price": 3450,
+      "realProductURL": "https://www.hermes.com/us/en/product/hooded-jogging-jacket-H357210HA11LA/" 
+    },
+    {
+      "id": 14,
+      "name": "Maillon Chaine d'Ancre Hooded Jacket",
+      "thumbnail": "https://assets.hermes.com/is/image/hermesproduct/maillon-chaine-d-ancre-hooded-jacket--357030HA01-worn-1-0-0-400-400_g.jpg",
+      "imageUrls": [
+        "https://assets.hermes.com/is/image/hermesproduct/maillon-chaine-d-ancre-hooded-jacket--357030HA01-worn-1-0-0-800-800_g.jpg",
+        "https://assets.hermes.com/is/image/hermesproduct/maillon-chaine-d-ancre-hooded-jacket--357030HA01-worn-2-0-0-800-800_g.jpg",
+        "https://assets.hermes.com/is/image/hermesproduct/maillon-chaine-d-ancre-hooded-jacket--357030HA01-worn-3-0-0-800-800_g.jpg",
+        "https://assets.hermes.com/is/image/hermesproduct/maillon-chaine-d-ancre-hooded-jacket--357030HA01-worn-4-0-0-800-800_g.jpg"
+        ],
+      "price": 2775,
+      "realProductURL": "https://www.hermes.com/us/en/product/maillon-chaine-d-ancre-hooded-jacket-H357030HA01ME/" 
     }
   ]
   

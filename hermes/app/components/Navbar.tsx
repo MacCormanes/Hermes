@@ -41,7 +41,7 @@ const Navbar = () => {
         </Link>
       </div>
 
-      <div className="flex items-center justify-end w-2/3">
+      <div className="flex items-center justify-end w-2/3 gap-7">
         {currentUser ? (
           <button className="mr-5" onClick={signOutUser}>
             Sign Out
@@ -57,10 +57,6 @@ const Navbar = () => {
           <option>Php</option>
           <option>Gbp</option>
         </select>
-
-        <div>
-          <SearchButton />
-        </div>
 
         <div className="flex">
           <CartDropdown />

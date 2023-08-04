@@ -20,7 +20,7 @@ const CartDropdown = () => {
             <CartIcon />
         </SheetTrigger>
         <SheetContent className="w-[400px] h-full bg-orange-50">
-          <SheetHeader>
+          <SheetHeader className="mb-6">
             <SheetTitle>
             Your Cart Items
             </SheetTitle>

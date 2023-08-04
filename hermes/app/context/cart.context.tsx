@@ -1,6 +1,6 @@
 "use client";
 
-import { Children, createContext, useState } from "react";
+import { createContext, useState } from "react";
 
 type ChildrenProps = {
   children: React.ReactNode;
