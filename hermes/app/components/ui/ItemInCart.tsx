@@ -20,7 +20,7 @@ const ItemInCart: React.FC<ItemInCartProps> = ({ product }) => {
         />
       </div>
       <div className="flex flex-col w-3/5 align-baseline">
-        <h2 className="text-base text-orange-950">{name}</h2>
+        <h2 className="text-lg font-medium text-orange-950">{name}</h2>
         <span>
           Quantity:{" "}
           <span className="text-base text-orange-950">{quantity}</span>

@@ -11,7 +11,7 @@ const Shop = () => {
   return (
     <div>
       <Navbar />
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-4 gap-6 p-10 bg-orange-50">
         {products.map((product) => (
           <div key={product.id}>
             <ProductCard product={product} key={product.id} />

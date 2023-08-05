@@ -24,7 +24,7 @@ const CartDropdown = () => {
       <SheetContent className="h-full bg-orange-50">
         <SheetHeader className="flex-row items-baseline justify-between mb-6 text-orange-950">
           <SheetTitle className="w-1/2 text-orange-950">
-            <h1 className="text-xl">Your Cart Items</h1>
+            <h1 className="text-xl font-bold">Your Cart Items</h1>
             <div className="flex flex-col mt-2 text-sm">
               <h4 className="opacity-60">
                 Total Cart Value: 

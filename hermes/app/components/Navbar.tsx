@@ -3,18 +3,16 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import SearchButton from "./ui/SearchButton";
 import { useContext } from "react";
 import { UserContext } from "../context/user.context";
 import { signOutUser } from "@/firebase/firebase.utils";
-import CartIcon from "./ui/CartIcon";
 import CartDropdown from "./ui/CartDropdown";
 
 const Navbar = () => {
   const { currentUser } = useContext(UserContext);
 
   return (
-    <div className="flex items-center justify-between p-3 bg-orange-50 text-orange-950">
+    <div className="flex items-center justify-between p-3 bg-orange-100 text-orange-950">
       <div className="flex items-center w-1/3 ml-5 space-x-6">
         <a href="/" className="">
           <div className="relative w-[77px] h-[77px]">
@@ -51,13 +49,6 @@ const Navbar = () => {
             Sign In
           </Link>
         )}
-
-        <select className="select select-sm ">
-          <option>USD</option>
-          <option>Php</option>
-          <option>Gbp</option>
-        </select>
-
         <div className="flex">
           <CartDropdown />
         </div>
