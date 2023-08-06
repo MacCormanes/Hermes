@@ -4,9 +4,9 @@ import Directory from "./components/Directory";
 import SecondaryHero from "./components/SecondaryHero";
 import Footer from "./components/Footer";
 
-export default async function Home() {
+export default function Home() {
   return (
-    <div className="font-spline debug-screens">
+    <div className="font-montserrat debug-screens">
         <Navbar />
         <PrimaryHero />
         <Directory />

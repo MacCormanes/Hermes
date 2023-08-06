@@ -23,6 +23,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/api/auth/[...nextauth]/route.ts", "app/signIn/page.jsx", "app/page.jsx", "app/signIn/page.jsx", "firebase/firebase.utils.ts", "app/components/ui/YouTubeForm.jsx", "app/context/user.context.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/api/auth/[...nextauth]/route.ts", "app/signIn/page.jsx", "app/page.jsx", "app/signIn/page.jsx", "firebase/firebase.utils.js", "app/components/ui/YouTubeForm.jsx", "app/context/user.context.tsx"],
   "exclude": ["node_modules"]
 }

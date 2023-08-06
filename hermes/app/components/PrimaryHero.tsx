@@ -8,10 +8,10 @@ const PrimaryHero = () => {
     width: '800px'
   };
   return (
-    <div className='bg-gradient-to-b from-orange-50 to-orange-100 flex h-100'>
-      <section className='w-1/2 flex flex-col justify-center px-12'>
-        <h1 className='text-5xl tracking-widest font-medium mb-3 bg-gradient-to-tl from-orange-400 to-orange-900 bg-clip-text text-transparent'>Your style,</h1>
-        <h1 className='text-5xl tracking-wide font-medium mb-5 bg-gradient-to-tl from-orange-400 to-orange-900 bg-clip-text text-transparent'>Your personality,</h1>
+    <div className='flex bg-gradient-to-t from-orange-100 to-orange-200 h-100'>
+      <section className='flex flex-col justify-center w-1/2 px-12'>
+        <h1 className='mb-3 text-5xl font-medium tracking-widest text-transparent bg-gradient-to-tl from-orange-400 to-orange-900 bg-clip-text'>Your style,</h1>
+        <h1 className='mb-5 text-5xl font-medium tracking-wide text-transparent bg-gradient-to-tl from-orange-400 to-orange-900 bg-clip-text'>Your personality,</h1>
         <p className='text-xl font-light text-orange-900'>What you wear says a lot about</p>
         <p className='text-xl font-light text-orange-900'>who you are. Wear it proud!</p>
       </section>

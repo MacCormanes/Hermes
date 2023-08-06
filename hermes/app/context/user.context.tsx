@@ -1,7 +1,7 @@
 "use client"
 
 import { createContext, useEffect, useState } from "react";
-import { createUserDocumentFromAuth, onAuthStateChangedListener, signOutUser } from "@/firebase/firebase.utils";
+import { createUserDocumentFromAuth, onAuthStateChangedListener } from "@/firebase/firebase.utils";
 import React from "react";
 
 type UserStateType = {

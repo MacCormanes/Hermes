@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
+  @layer utilities {
     /* Hide scrollbar for Chrome, Safari and Opera */
     .no-scrollbar::-webkit-scrollbar {
       display: none;
@@ -17,19 +17,27 @@
   
   @layer components {
     .card-container-transition {
-      @apply transform flex flex-col justify-end items-center rounded-3xl transition-all duration-700 hover:scale-105 m-3;
+      @apply flex flex-col items-center justify-end m-3 transition-all duration-700 transform rounded-3xl hover:scale-105;
     }
   
     .card-transition {
-      @apply relative inset-0 transform rounded-3xl object-cover;
+      @apply relative inset-0 object-cover transform rounded-3xl;
     }
   
   
     .card-text {
-      @apply pointer-events-none relative text-orange-200 ;
+      @apply relative text-orange-200 pointer-events-none ;
     }
   
     .btn {
-      @apply w-32 uppercase text-xs bg-orange-100 text-orange-900 hover:bg-orange-300 transition-all duration-500;
+      @apply w-32 text-xs text-orange-900 uppercase transition-all duration-500 bg-orange-100 hover:bg-orange-300;
+    }
+  }
+
+  @layer base {
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
     }
   }

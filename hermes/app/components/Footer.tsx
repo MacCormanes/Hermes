@@ -18,8 +18,8 @@ const Footer = () => {
             Receive our newsletter, collections and surprises
           </p>
           <div className="flex w-4/5 gap-2">
-            <Input type="email" placeholder="Your Email" className="w-3/4" />
-            <Button className="text-xs uppercase transition-all duration-500 bg-orange-400 text-orange-950 hover:bg-orange-500"> Subscribe </Button>
+            <Input type="email" placeholder="Your Email" className="w-3/4 shadow-inner shadow-black/30" />
+            <Button className="text-xs uppercase transition-all duration-500 bg-orange-400 shadow-md text-orange-950 hover:bg-orange-500 shadow-black/30"> Subscribe </Button>
           </div>
         </div>
         <div className="flex flex-col items-center w-2/5">
@@ -42,7 +42,7 @@ const Footer = () => {
       </div>
       <div className="flex flex-col items-center w-2/3 gap-2 mx-auto">
         <h2 className="uppercase">Customer Service</h2>
-        <Button className="w-32 h-auto text-xs text-orange-900 uppercase transition-all duration-500 bg-orange-100 hover:bg-orange-300">
+        <Button className="w-32 h-auto text-xs text-orange-900 uppercase transition-all duration-500 bg-orange-100 shadow-md hover:bg-orange-300 shadow-black/20">
           Contact Us
         </Button>
         <div className="flex">

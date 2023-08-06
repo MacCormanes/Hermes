@@ -25,13 +25,13 @@ const Directory = () => {
           </div>
         </div>
         <div className="grid-col-8 relative grid h-[500px] grid-flow-col grid-rows-6 gap-4 px-12">
-          <div className="relative col-span-4 row-span-6 shadow-md card-container-transition shadow-gray-800">
+          <div className="relative col-span-4 row-span-6 shadow-md card-container-transition shadow-black/50">
             <Image
               src="/content/new-arrivals.webp"
               fill={true}
               sizes="50vw"
               alt="womens"
-              className="border-t-2 card-transition border-orange-50"
+              className="border-t-2 shadow-xl card-transition shadow-black/50"
             />
             <div className="absolute inset-0 transition-all duration-700 rounded-3xl bg-gradient-to-t from-stone-900 to-stone-400 opacity-60 hover:opacity-30"></div>
             <h1 className="mb-1 text-2xl card-text">
@@ -39,25 +39,25 @@ const Directory = () => {
             </h1>
             <h3 className="mb-4 text-sm text-orange-300 card-text">Shop Now</h3>
           </div>
-          <div className="relative col-span-4 row-span-3 shadow-md card-container-transition shadow-gray-800">
+          <div className="relative col-span-4 row-span-3 shadow-md card-container-transition shadow-black/50">
             <Image
               src="/content/women-category2.jpg"
               fill={true}
               sizes="50vw"
               alt="bags"
-              className="object-top border-t-2 card-transition border-orange-50"
+              className="object-top border-t-2 shadow-xl card-transition shadow-black/50"
             />
             <div className="absolute inset-0 transition-all duration-700 rounded-3xl bg-gradient-to-t from-stone-900 to-stone-400 opacity-60 hover:opacity-30"></div>
             <h1 className="mb-1 text-2xl card-text">Womens</h1>
             <h3 className="mb-4 text-sm text-orange-300 card-text">Shop Now</h3>
           </div>
-          <div className="relative col-span-4 row-span-3 shadow-md card-container-transition shadow-gray-800">
+          <div className="relative col-span-4 row-span-3 shadow-md card-container-transition shadow-black/50">
             <Image
               src="/content/men-category.jpg"
               fill={true}
               sizes="50vw"
               alt="bags"
-              className="object-top border-t-2 card-transition border-orange-50"
+              className="object-top border-t-2 shadow-xl card-transition shadow-black/50"
             />
             <div className="absolute inset-0 transition-all duration-700 rounded-3xl bg-gradient-to-t from-stone-900 to-stone-400 opacity-60 hover:opacity-30"></div>
             <h1 className="mb-1 text-2xl card-text">Mens</h1>

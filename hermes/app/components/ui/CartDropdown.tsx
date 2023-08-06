@@ -10,8 +10,9 @@ import {
 import CartIcon from "./CartIcon";
 import Link from "next/link";
 import { CartContext } from "@/app/context/cart.context";
-import ItemInCart from "./ItemInCart";
+import ItemInCart from "./ItemInCartDropdown";
 import { Button } from "@/components/ui/button";
+import ItemInCartDropdown from "./ItemInCartDropdown";
 
 const CartDropdown = () => {
   const { cartItems, total } = useContext(CartContext);
@@ -21,10 +22,10 @@ const CartDropdown = () => {
       <SheetTrigger>
         <CartIcon />
       </SheetTrigger>
-      <SheetContent className="h-full bg-orange-50">
+      <SheetContent className="bg-orange-100 font-montserrat">
         <SheetHeader className="flex-row items-baseline justify-between mb-6 text-orange-950">
           <SheetTitle className="w-1/2 text-orange-950">
-            <h1 className="text-xl font-bold">Your Cart Items</h1>
+            <h1 className="text-xl font-bold whitespace-nowrap">Your Cart Items</h1>
             <div className="flex flex-col mt-2 text-sm">
               <h4 className="opacity-60">
                 Total Cart Value: 
@@ -36,10 +37,10 @@ const CartDropdown = () => {
             <Link href="/shop/checkout">CHECKOUT</Link>
           </Button>
         </SheetHeader>
-        <SheetDescription className="flex flex-col h-full pb-10 overflow-y-auto no-scrollbar">
+        <SheetDescription className="flex flex-col h-[800px] pb-10 overflow-y-auto no-scrollbar">
           <div>
             {cartItems.map((item) => (
-              <ItemInCart key={item.id} product={item} />
+              <ItemInCartDropdown key={item.id} product={item} />
             ))}
           </div>
         </SheetDescription>

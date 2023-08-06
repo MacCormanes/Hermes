@@ -31,7 +31,7 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       fontFamily: {
-        "spline": 'var(--font-spline)',
+        "montserrat": 'var(--font-montserrat)',
       },
     },
   },

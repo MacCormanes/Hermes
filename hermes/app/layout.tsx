@@ -1,13 +1,13 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Spline_Sans_Mono } from 'next/font/google'
+import { Montserrat } from 'next/font/google'
 import { UserProvider } from './context/user.context'
 import { ProductsProvider } from './context/products.context'
 import { CartProvider } from './context/cart.context'
 
-const spline = Spline_Sans_Mono({
+const montserrat = Montserrat({
   subsets: ['latin'],
-  variable: '--font-spline',
+  variable: '--font-montserrat',
 })
 
 export const metadata: Metadata = {
@@ -22,7 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${spline.variable}`}>
+      <body className={`${montserrat.variable}`}>
         <UserProvider>
           <ProductsProvider>
             <CartProvider>
