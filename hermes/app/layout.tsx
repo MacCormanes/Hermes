@@ -2,7 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 import { UserProvider } from './context/user.context'
-import { ProductsProvider } from './context/products.context'
+import { CategoriesProvider } from './context/categories.context'
 import { CartProvider } from './context/cart.context'
 
 const montserrat = Montserrat({
@@ -24,11 +24,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${montserrat.variable}`}>
         <UserProvider>
-          <ProductsProvider>
+          <CategoriesProvider>
             <CartProvider>
               {children}
             </CartProvider>
-          </ProductsProvider>
+          </CategoriesProvider>
         </UserProvider>
       </body>
     </html>

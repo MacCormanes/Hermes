@@ -45,7 +45,7 @@ const Checkout = () => {
             ))}
           </div>
           <div>
-            <div className="grid w-full max-w-sm items-center gap-1.5 mx-7 my-5">
+            <div className="grid w-full max-w-sm items-center gap-1.5 mx-auto my-5">
               <Label htmlFor="text" className="text-black/60">
                 Discount Code
               </Label>
