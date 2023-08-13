@@ -15,7 +15,7 @@ type FormValues = {
 const PaymentForm = () => {
   const onSubmit = () => {};
   const form = useForm<FormValues>();
-  const { register, handleSubmit, formState, co } = form;
+  const { register, handleSubmit, formState } = form;
   const { errors } = formState;
 
   return (
