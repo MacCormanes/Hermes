@@ -21,15 +21,15 @@ const Navbar = () => {
               src="/hermes.svg"
               fill
               sizes="30vw"
-              priority={false}
+              priority={true}
               alt="Hermes Logo"
             />
           </div>
         </Link>
-        <Link className="" href="/">
+        <Link className="" href="/shop/mens">
           Men
         </Link>
-        <Link className="" href="/">
+        <Link className="" href="/shop/womens">
           Women
         </Link>
         <Link className="" href="/">

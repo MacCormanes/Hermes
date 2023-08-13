@@ -5,28 +5,25 @@ import {
   addCollectionAndDocuments,
   getCategoriesAndDocuments,
 } from "@/firebase/firebase.utils";
-import { SHOP_DATA } from "../SHOP_DATA";
+import { CartProduct } from "./cart.context";
 
-type Product = {
-  id: number;
-  name: string;
-  thumbnail: string;
-  imageUrls: string[];
-  price: number;
-  realProductURL: string;
-};
+type CategoriesMapType = {
+  [title: string]: CartProduct[]
+}
 
+type CategoriesContextType = {
+  categoriesMap: CategoriesMapType
+  setCategoriesMap: React.Dispatch<React.SetStateAction<CategoriesMapType>>
+}
 
-export const CategoriesContext = createContext({
-  categoriesMap: {},
-});
+export const CategoriesContext = createContext({} as CategoriesContextType)
 
 export const CategoriesProvider = ({
   children,
 }: {
   children: React.ReactNode;
 }) => {
-  const [categoriesMap, setCategoriesMap] = useState({});
+  const [categoriesMap, setCategoriesMap] = useState<CategoriesMapType>({});
 
 /*
 // Adding documents to firestore( fired only once )
@@ -48,6 +45,7 @@ useEffect(() => {
 
   const value = {
     categoriesMap,
+    setCategoriesMap
   };
 
   return (
