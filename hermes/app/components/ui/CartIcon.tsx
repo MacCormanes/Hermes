@@ -1,12 +1,12 @@
 import React from "react";
 import ShoppingBag from "../../../public/icons/shopping-bag.svg";
 import Image from "next/image";
-import { useContext } from "react";
-import { CartContext } from "@/app/context/cart.context";
 import { Badge } from "@/components/ui/badge";
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/store/store";
 
 const CartIcon = () => {
-  const { cartCount } = useContext(CartContext);
+  const cartCount = useSelector((state: RootState) => state.cart.cartCount)
   return (
     <div className="relative w-[36px] h-[36px] mr-5 flex justify-center">
       <Image src={ShoppingBag} fill sizes="20vw" alt="shopping-bag-icon" />

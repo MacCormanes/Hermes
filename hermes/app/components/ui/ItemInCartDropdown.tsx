@@ -1,18 +1,19 @@
 import { ProductCardProps } from "@/app/components/ui/ProductCard";
 import SelectSize from "@/app/components/ui/SelectSize";
-import { CartContext } from "@/app/context/cart.context";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import React, { useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {addItemToCart, decrementItemToCart,removeItemToCart} from '../../rtk-slices/cartSlice'
+import { RootState } from "@/app/store/store";
 
 const ItemInCartDropdown: React.FC<ProductCardProps> = ({ product }) => {
-  const { name, price, quantity, imageUrls } = product;
-  const { addItemToCart, decrementItemToCart, removeItemInCart } =
-    useContext(CartContext);
-
-  const handleDecrement = () => decrementItemToCart(product);
-  const handleIncrement = () => addItemToCart(product);
-  const handleRemoveItem = () => removeItemInCart(product);
+  const { name, price, imageUrls } = product;
+  const cartItems = useSelector((state: RootState) => state.cart.cartItems)
+  const selectedProduct = cartItems.find((item) => item.id === product.id)
+  const dispatch = useDispatch()
+  const handleDecrement = () => dispatch(decrementItemToCart(product));
+  const handleIncrement = () => dispatch(addItemToCart(product));
+  const handleRemoveItem = () => dispatch(removeItemToCart(product));
   return (
     <div className="flex items-center p-3 font-montserrat text-slate-500">
       <div className="flex justify-center mr-5">
@@ -41,7 +42,7 @@ const ItemInCartDropdown: React.FC<ProductCardProps> = ({ product }) => {
             </span>
           </Button>
           <span className="items-center px-2 py-1 text-sm border-none pointer-events-none">
-            {quantity}
+            {selectedProduct?.quantity}
           </span>
           <Button
             variant="outline"
