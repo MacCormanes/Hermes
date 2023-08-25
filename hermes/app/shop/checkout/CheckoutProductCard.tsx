@@ -1,18 +1,18 @@
 import { ProductCardProps } from "@/app/components/ui/ProductCard";
 import SelectSize from "@/app/components/ui/SelectSize";
-import { CartContext } from "@/app/context/cart.context";
+import { useAppDispatch } from "@/app/store/store";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import React, { useContext } from "react";
+import { addItemToCart, decrementItemToCart, removeItemToCart } from "@/app/rtk-slices/cartSlice";
 
 const CheckoutProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { name, price, quantity, imageUrls } = product;
-  const { addItemToCart, decrementItemToCart, removeItemInCart } =
-    useContext(CartContext);
+  
+  const dispatch = useAppDispatch()
 
-  const handleDecrement = () => decrementItemToCart(product);
-  const handleIncrement = () => addItemToCart(product);
-  const handleRemoveItem = () => removeItemInCart(product);
+  const handleDecrement = () => dispatch(decrementItemToCart(product));
+  const handleIncrement = () => dispatch(addItemToCart(product));
+  const handleRemoveItem = () => dispatch(removeItemToCart(product));
 
   return (
     <div className="flex items-center p-3 ml-5 font-montserrat text-slate-500">

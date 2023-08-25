@@ -1,11 +1,10 @@
 "use client"
 
-import { CartProduct } from "@/app/context/cart.context";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 import { useDispatch } from 'react-redux'
-import { addItemToCart } from '../../rtk-slices/cartSlice'
+import { CartProduct, addItemToCart } from '../../rtk-slices/cartSlice'
 
 export type ProductCardProps = {
   product: CartProduct;

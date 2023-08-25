@@ -2,17 +2,17 @@
 
 import Navbar from "@/app/components/Navbar";
 import React from "react";
-import { useContext } from "react";
-import { CartContext } from "@/app/context/cart.context";
 import CheckoutProductCard from "./CheckoutProductCard";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import CreditCardForm from "./CreditCardForm";
+import { useAppSelector } from "@/app/store/store";
 
 const Checkout = () => {
-  const { cartItems, total } = useContext(CartContext);
+  const cartItems = useAppSelector(state => state.cart.cartItems)
+  const total = useAppSelector(state => state.cart.total)
   const handleSubmit = () => {};
   return (
     <div>

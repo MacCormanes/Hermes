@@ -5,7 +5,7 @@ import {
   addCollectionAndDocuments,
   getCategoriesAndDocuments,
 } from "@/firebase/firebase.utils";
-import { CartProduct } from "./cart.context";
+import { CartProduct } from "../rtk-slices/cartSlice";
 
 type CategoriesMapType = {
   [title: string]: CartProduct[]

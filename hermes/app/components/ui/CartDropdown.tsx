@@ -1,4 +1,3 @@
-import React, { useContext } from "react";
 import {
   Sheet,
   SheetContent,
@@ -9,16 +8,13 @@ import {
 } from "@/components/ui/sheet";
 import CartIcon from "./CartIcon";
 import Link from "next/link";
-import { CartContext } from "@/app/context/cart.context";
-import ItemInCart from "./ItemInCartDropdown";
 import { Button } from "@/components/ui/button";
 import ItemInCartDropdown from "./ItemInCartDropdown";
-import { useSelector } from "react-redux";
-import { RootState } from "@/app/store/store";
+import { useAppSelector } from "@/app/store/store";
 
 const CartDropdown = () => {
-  const cartItems = useSelector((state: RootState) => state.cart.cartItems)
-  const total = useSelector((state: RootState) => state.cart.total)
+  const cartItems = useAppSelector(state => state.cart.cartItems)
+  const total = useAppSelector(state => state.cart.total)
   const formattedNumber = total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2,});
   return (
     <Sheet>

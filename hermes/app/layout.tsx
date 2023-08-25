@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import { UserProvider } from "./context/user.context";
 import { CategoriesProvider } from "./context/categories.context";
-import { CartProvider } from "./context/cart.context";
 import ReduxProvider from "./store/ReduxProvider";
 
 const montserrat = Montserrat({
@@ -26,11 +25,9 @@ export default function RootLayout({
       <body>
         <UserProvider>
           <CategoriesProvider>
-            <CartProvider>
               <ReduxProvider>
                 {children}
               </ReduxProvider>
-            </CartProvider>
           </CategoriesProvider>
         </UserProvider>
       </body>
