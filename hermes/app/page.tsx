@@ -6,7 +6,7 @@ import Footer from "./components/Footer";
 
 export default function Home() {
   return (
-    <div className="font-montserrat debug-screens">
+    <div className="font-montserrat bg-gradient-to-t from-orange-100 to-orange-200 debug-screens">
         <Navbar />
         <PrimaryHero />
         <Directory />
