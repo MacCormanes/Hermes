@@ -9,9 +9,10 @@ import CategoryPreview from "./CategoryPreview";
 const Shop = () => {
   const { categoriesMap } = useContext(CategoriesContext);
   return (
-    <div className="font-montserrat">
+    <div className="font-montserrat bg-gradient-to-b from-orange-300 via-orange-50 to-orange-300">
       <Navbar />
-      <div className="bg-gradient-to-b from-orange-300 via-orange-50 to-orange-300 pb-12">
+      <h1 className="block mt-3 mb-5 text-3xl font-semibold text-center pt-7 text-orange-950">Categories</h1>
+      <div className="pb-12">
         {Object.keys(categoriesMap).map((title) => {
           const products = categoriesMap[title];
           console.log(products)

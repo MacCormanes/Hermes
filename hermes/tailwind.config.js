@@ -39,6 +39,7 @@ module.exports = {
     require("tailwindcss-animate"),
     require('prettier-plugin-tailwindcss'),
     require('tailwindcss-debug-screens'),
+    require('tailwind-scrollbar'),
 ],
   experimental: {
     applyComplexClasses: true

@@ -3,14 +3,18 @@ import SelectSize from "@/app/components/ui/SelectSize";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
-import {addItemToCart, decrementItemToCart,removeItemToCart} from '../../rtk-slices/cartSlice'
+import {
+  addItemToCart,
+  decrementItemToCart,
+  removeItemToCart,
+} from "../../rtk-slices/cartSlice";
 import { RootState } from "@/app/store/store";
 
 const ItemInCartDropdown: React.FC<ProductCardProps> = ({ product }) => {
   const { name, price, imageUrls } = product;
-  const cartItems = useSelector((state: RootState) => state.cart.cartItems)
-  const selectedProduct = cartItems.find((item) => item.id === product.id)
-  const dispatch = useDispatch()
+  const cartItems = useSelector((state: RootState) => state.cart.cartItems);
+  const selectedProduct = cartItems.find((item) => item.id === product.id);
+  const dispatch = useDispatch();
   const handleDecrement = () => dispatch(decrementItemToCart(product));
   const handleIncrement = () => dispatch(addItemToCart(product));
   const handleRemoveItem = () => dispatch(removeItemToCart(product));
