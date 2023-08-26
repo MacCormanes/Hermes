@@ -1,3 +1,5 @@
+'use client'
+
 import Link from "next/link";
 import ProductCard from "../components/ui/ProductCard";
 import { CartProduct } from "../rtk-slices/cartSlice";
