@@ -8,15 +8,12 @@ import {
   SheetHeader,
   SheetTrigger,
 } from "@/components/ui/sheet";
-
-import { useContext } from "react";
-import { UserContext } from "../context/user.context";
 import { signOutUser } from "@/firebase/firebase.utils";
 import CartDropdown from "./ui/CartDropdown";
+import { useAppSelector } from "../store/store";
 
 const Navbar = () => {
-  const { currentUser } = useContext(UserContext);
-
+  const currentUser = useAppSelector((state) => state.user.currentUser)
   return (
     <div className="flex items-center justify-between p-0 m-0 bg-orange-200 font-montserrat text-orange-950 h-[80px] w-full">
       <Sheet>
@@ -83,9 +80,13 @@ const Navbar = () => {
           <span className="">Shop</span>
         </Link>
       </div>
+      <button className="" onClick={signOutUser}>
+            Sign Out
+          </button>
 
       <div className="flex items-center justify-end gap-4">
-        {currentUser ? (
+        {
+        currentUser ? (
           <button className="" onClick={signOutUser}>
             Sign Out
           </button>

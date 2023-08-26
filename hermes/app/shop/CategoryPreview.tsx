@@ -29,7 +29,7 @@ const CategoryPreview = ({ title, products }: CategoryPreviewProps) => {
           .map((product) => {
             return <ProductCard product={product} key={product.id} />;
           })}
-        L
+        
       </div>
     </div>
   );

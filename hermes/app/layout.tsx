@@ -1,7 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
-import { UserProvider } from "./context/user.context";
 import { CategoriesProvider } from "./context/categories.context";
 import ReduxProvider from "./store/ReduxProvider";
 
@@ -23,13 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${montserrat.variable}`}>
       <body>
-        <UserProvider>
-          <CategoriesProvider>
-              <ReduxProvider>
-                {children}
-              </ReduxProvider>
-          </CategoriesProvider>
-        </UserProvider>
+        <ReduxProvider>
+            <CategoriesProvider>{children}</CategoriesProvider>
+        </ReduxProvider>
       </body>
     </html>
   );
