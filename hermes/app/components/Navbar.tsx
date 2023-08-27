@@ -73,7 +73,7 @@ const Navbar = () => {
         <Link className="hidden sm:block" href="/shop/womens">
           <span className="">Women</span>
         </Link>
-        <Link className="hidden sm:block" href="/">
+        <Link className="hidden sm:block" href="/payment">
           <span className="">About</span>
         </Link>
         <Link className="hidden sm:block" href="/shop">
@@ -91,7 +91,7 @@ const Navbar = () => {
             Sign Out
           </button>
         ) : (
-          <Link href="/signIn">
+          <Link href="/signin">
             <span className="">Sign In</span>
           </Link>
         )}

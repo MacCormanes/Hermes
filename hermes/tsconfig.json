@@ -23,6 +23,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/api/auth/[...nextauth]/route.ts", "app/signIn/page.jsx", "app/page.jsx", "app/signIn/page.jsx", "firebase/firebase.utils.js", "app/components/ui/YouTubeForm.jsx", "app/context/user.context.tsx", "app/SHOP_DATA.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/api/auth/[...nextauth]/route.ts", "app/signin/page.jsx", "app/page.jsx", "app/signin/page.jsx", "firebase/firebase.utils.js", "app/components/ui/YouTubeForm.jsx", "app/context/user.context.tsx", "app/SHOP_DATA.ts", "app/api/keys.js", "app/api/keys/page.ts", "app/checkout_sessions/page.js", "app/checkout_sessions/page.js", "app/getProducts/route.js", "app/payment/PricingCard.jsx", "app/pricing/page.jsx", "app/api/create-payment-intent/route.js"],
   "exclude": ["node_modules"]
 }

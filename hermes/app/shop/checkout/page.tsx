@@ -10,9 +10,11 @@ import { Separator } from "@/components/ui/separator";
 import CreditCardForm from "./CreditCardForm";
 import { useAppSelector } from "@/app/store/store";
 
+
 const Checkout = () => {
-  const cartItems = useAppSelector(state => state.cart.cartItems)
-  const total = useAppSelector(state => state.cart.total)
+  const cartItems = useAppSelector((state) => state.cart.cartItems);
+  const total = useAppSelector((state) => state.cart.total);
+  
   const handleSubmit = () => {};
   return (
     <div>
@@ -20,12 +22,15 @@ const Checkout = () => {
       <div className="flex h-[110vh]">
         <div className="w-8/12 bg-gradient-to-br from-orange-200 to-orange-50">
           <div className="flex flex-col justify-center w-7/12 gap-3 mx-auto mt-10">
-            <Button className="w-full text-lg font-extrabold text-purple-600 transition-all duration-700 bg-orange-300 hover:text-orange-300 hover:bg-purple-600">Stripe</Button>
+            <Button className="w-full text-lg font-extrabold text-purple-600 transition-all duration-700 bg-orange-300 hover:text-orange-300 hover:bg-purple-600">
+              Stripe
+            </Button>
             <div className="relative flex items-center justify-center">
               <span className="absolute px-2 bg-transparent">Or</span>
               <Separator className="my-7 h-[2px] bg-orange-300" />
             </div>
-            <CreditCardForm />
+              <CreditCardForm />
+            <div>
             <Button className="mt-5">
               Pay $
               {total.toLocaleString(undefined, {
@@ -33,6 +38,7 @@ const Checkout = () => {
                 maximumFractionDigits: 2,
               })}
             </Button>
+            </div>
           </div>
         </div>
         <div className="w-4/12 bg-orange-100">
