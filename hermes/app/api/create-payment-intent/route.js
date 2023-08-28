@@ -4,10 +4,16 @@ import Stripe from 'stripe'
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
 const calculateOrderAmount = (items) => {
-  const totalOrderAmount = items.reduce((acc, currentItem) => {
+  const total = items.reduce((acc, currentItem) => {
     return acc + (currentItem.price*currentItem.quantity)
   }, 0)
-  return totalOrderAmount*100;
+
+  const discount = 1000
+  const taxes = total*0.05
+  const shipping = 50
+  const grandTotal = total + taxes + shipping - discount
+
+  return grandTotal*100;
 };
 
 export async function POST(req) {

@@ -47,7 +47,7 @@ const Footer = () => {
         </Button>
         <div className="text-sm font-light text-center lg:flex lg:gap-5">
           <p>800-441-4488</p>
-          <p>Monday to Friday: 9-am - 6px EST</p>
+          <p>Monday to Friday: 9-am - 6pm EST</p>
           <p>Saturday: 10am - 6pm EST</p>
         </div>
       </div>

@@ -6,10 +6,10 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 type FormValues = {
-    email: string;
-  name: string;
-  cardNumber: number;
-  confirmPassword: string;
+  firstName: string;
+  lastName: string;
+  address: string;
+  contact: number;
 };
 
 const PaymentForm = () => {
@@ -20,73 +20,68 @@ const PaymentForm = () => {
 
   return (
     <div className="w-2/3 pt-10 mx-auto mt-12">
-      <Button className="w-full">Stripe</Button>
-      <div className="relative flex items-center justify-center">
-        <span className="absolute px-2 bg-orange-50">OR</span>
-        <Separator className="my-10 h-[2px] bg-orange-300" />
-      </div>
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
-        <Label className="text-base">
-          Email
-        </Label>
-        <Input
-          type="email"
-          id="email"
-          className=""
-          {...register("email", {
-            required: "We need your cool email address.",
-          })}
-        />
-        <p className="mt-1 mb-2 text-xs font-medium text-red-400">
-          {errors.email?.message}
-        </p>
-
-        <Label htmlFor="name" className="text-base">
-          Name on card
+        <Label className="text-base" htmlFor="firstName">
+          First Name
         </Label>
         <Input
           type="text"
-          id="name"
+          id="firstName"
           className=""
-          {...register("name", {
+          {...register("firstName", {
+            required: "We need your name",
+          })}
+        />
+        <p className="mt-1 mb-2 text-xs font-medium text-red-400">
+          {errors.firstName?.message}
+        </p>
+
+        <Label htmlFor="lastName" className="text-base">
+          Last Name
+        </Label>
+        <Input
+          type="text"
+          id="lastName"
+          className=""
+          {...register("lastName", {
             required: "A name is required",
           })}
         />
         <p className="mt-1 mb-2 text-xs font-medium text-red-400">
-          {errors.name?.message}
+          {errors.lastName?.message}
         </p>
 
-        <Label htmlFor="number" className="text-base">
-          Card Number
+        <Label htmlFor="address" className="text-base">
+          Address
         </Label>
         <Input
           type="text"
-          id="card-number"
+          id="address"
           className=""
           placeholder="1234 1234 1234 1234"
-          {...register("cardNumber", {
+          {...register("address", {
             maxLength: 16,
             minLength: 15,
             required: "A password should be given.",
           })}
         />
         <p className="mt-1 mb-2 text-xs font-medium text-red-400">
-          {errors.cardNumber?.message}
+          {errors.address?.message}
         </p>
 
-        <Label htmlFor="confirmPassword" className="text-base">
-          Confirm Password
+        <Label htmlFor="contact" className="text-base">
+          Contact Number
         </Label>
         <Input
           type="password"
-          id="confirmPassword"
+          id="contact"
           className=""
-          {...register("confirmPassword", {
+          {...register("contact", {
             required: "Woops! Please confirm your password.",
           })}
         />
         <p className="mt-1 mb-2 text-xs font-medium text-red-400">
-          {errors.confirmPassword?.message}
+          {errors.contact?.message}
         </p>
 
         <Button

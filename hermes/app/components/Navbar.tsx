@@ -8,14 +8,38 @@ import {
   SheetHeader,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { signOutUser } from "@/firebase/firebase.utils";
+import { createUserDocumentFromAuth, getCategoriesAndDocuments, onAuthStateChangedListener, signOutUser } from "@/firebase/firebase.utils";
 import CartDropdown from "./ui/CartDropdown";
-import { useAppSelector } from "../store/store";
+import { useAppDispatch, useAppSelector } from "../store/store";
+import { useEffect } from "react";
+import { setCurrentUser } from "../rtk-slices/userSlice";
+import { setCategoriesMap } from "../rtk-slices/categoriesSlice";
 
 const Navbar = () => {
+
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    const unsubscribe = onAuthStateChangedListener((user:any) => {
+      if (user){
+        createUserDocumentFromAuth(user);
+      }
+      const formattedUser = user && (({accessToken, email}) => ({accessToken,email}))(user)
+      dispatch(setCurrentUser(formattedUser))
+    })
+    return unsubscribe
+  }, []);
+
+  useEffect(() => {
+    const getCategoriesMap = async () => {
+      const categoryMap = await getCategoriesAndDocuments();
+      dispatch(setCategoriesMap(categoryMap));
+    };
+    getCategoriesMap();
+  }, []);
+
   const currentUser = useAppSelector((state) => state.user.currentUser)
   return (
-    <div className="flex items-center justify-between p-0 m-0 bg-orange-200 font-montserrat text-orange-950 h-[80px] w-full">
+    <div className="flex items-center justify-between p-0 m-0 bg-orange-200 font-montserrat text-orange-950 h-[80px] min-w-full">
       <Sheet>
         <SheetTrigger className="inline-block ml-5 sm:hidden">
           <svg
@@ -80,10 +104,6 @@ const Navbar = () => {
           <span className="">Shop</span>
         </Link>
       </div>
-      <button className="" onClick={signOutUser}>
-            Sign Out
-          </button>
-
       <div className="flex items-center justify-end gap-4">
         {
         currentUser ? (
@@ -95,7 +115,7 @@ const Navbar = () => {
             <span className="">Sign In</span>
           </Link>
         )}
-        <div className="flex">
+        <div className="">
           <CartDropdown />
         </div>
       </div>

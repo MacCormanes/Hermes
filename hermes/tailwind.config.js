@@ -2,11 +2,11 @@
 module.exports = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   theme: {
     container: {
       center: true,
@@ -14,6 +14,9 @@ module.exports = {
       screens: {
         "2xl": "1400px",
       },
+    },
+    gridTemplateRows: {
+      '[auto,auto,1fr]': 'auto auto 1fr',
     },
     extend: {
       keyframes: {
@@ -31,17 +34,17 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       fontFamily: {
-        montserrat: 'var(--font-montserrat)',
+        montserrat: "var(--font-montserrat)",
       },
     },
   },
   plugins: [
     require("tailwindcss-animate"),
-    require('prettier-plugin-tailwindcss'),
-    require('tailwindcss-debug-screens'),
-    require('tailwind-scrollbar'),
-],
+    require("prettier-plugin-tailwindcss"),
+    require("tailwindcss-debug-screens"),
+    require("tailwind-scrollbar"),
+  ],
   experimental: {
-    applyComplexClasses: true
-  }
-}
+    applyComplexClasses: true,
+  },
+};

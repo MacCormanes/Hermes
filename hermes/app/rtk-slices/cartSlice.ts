@@ -14,12 +14,14 @@ type InitialState = {
   cartItems: CartProduct[],
   total: number,
   cartCount: number
+  customerDetailsPage: boolean
 }
 
 const initialState: InitialState = {
   cartItems: [],
   total: 0,
   cartCount: 0,
+  customerDetailsPage: true,
 };
 
 export const cartSlice = createSlice({
@@ -63,11 +65,14 @@ export const cartSlice = createSlice({
       state.cartItems = state.cartItems.filter((item) => item.id !== action.payload.id)
       state.cartCount = state.cartCount - action.payload.quantity
       state.total = state.total - (action.payload.quantity * action.payload.price)
+    },
+    setCustomerDetailsPage: (state, action) => {
+      state.customerDetailsPage = false
     }
   },
 });
 
-export const { addItemToCart, decrementItemToCart, removeItemToCart } =
+export const { addItemToCart, decrementItemToCart, removeItemToCart, setCustomerDetailsPage } =
   cartSlice.actions;
 
 export default cartSlice.reducer;

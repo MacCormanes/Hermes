@@ -2,6 +2,7 @@
 
 import CategoryView from "./CategoryView";
 import Navbar from "@/app/components/Navbar";
+import BackToTopButton from "@/app/components/ui/Animations/BackToTopButton";
 import { useAppSelector } from "@/app/store/store";
 
 type ParamsType = {
@@ -25,6 +26,7 @@ const Category = ({ params }: CategoryProps) => {
           }
         })}
       </div>
+      <BackToTopButton />
     </div>
   );
 };

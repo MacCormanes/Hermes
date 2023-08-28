@@ -1,18 +1,19 @@
-"use client"
+"use client";
 
 import React from "react";
 import {
   PaymentElement,
   LinkAuthenticationElement,
   useStripe,
-  useElements
+  useElements,
 } from "@stripe/react-stripe-js";
+import { Button } from "@/components/ui/button";
 
 export default function PaymentForm2() {
   const stripe = useStripe();
   const elements = useElements();
 
-  const [email, setEmail] = React.useState('');
+  const [email, setEmail] = React.useState("");
   const [message, setMessage] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
 
@@ -86,18 +87,21 @@ export default function PaymentForm2() {
 
   return (
     <form id="payment-form" onSubmit={handleSubmit}>
+      <h1 className="mb-4 text-xl font-semibold text-center text-orange-900">Paying Securely with Stripe</h1>
       <LinkAuthenticationElement
         id="link-authentication-element"
         onChange={(e) => setEmail(e.target.value)}
       />
-      <PaymentElement id="payment-element" options={paymentElementOptions} />
-      <button disabled={isLoading || !stripe || !elements} id="submit">
+      <PaymentElement
+        id="payment-element"
+        options={paymentElementOptions}
+        className="mt-3 bg-orange-950"
+      />
+      <Button disabled={isLoading || !stripe || !elements} id="submit" className="w-full mt-5">
         <span id="button-text">
           {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
         </span>
-      </button>
-      {/* Show any error or success messages */}
-      {message && <div id="payment-message">{message}</div>}
+      </Button>
     </form>
   );
 }

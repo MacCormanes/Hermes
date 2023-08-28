@@ -13,8 +13,8 @@ const SecondaryHero = () => {
           opening the door to boundless creativity.
         </p>
         <Link
-          href=""
-          className="text-sm text-orange-700 transition-all duration-500 hover:scale-105 hover:text-orange-900 hover:underline"
+          href="/shop"
+          className="text-orange-700 transition-all duration-500 text-md hover:scale-105 hover:text-orange-900 hover:underline"
         >
           Make your escape
         </Link>

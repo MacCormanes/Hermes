@@ -13,6 +13,24 @@
       -ms-overflow-style: none; /* IE and Edge */
       scrollbar-width: none; /* Firefox */
     }
+
+    #payment-form {
+      width: 32rem;
+      display: flex;
+      flex-direction: column;
+      margin: 5rem auto;
+    }
+
+    #transition-button {
+      width: 30rem;
+      margin: 2rem auto
+    }
+
+    #checkout-cart-scroll {
+      height: 23rem;
+      overflow-y: auto;
+      
+    }
   }
   
   @layer components {
