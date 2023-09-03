@@ -32,6 +32,7 @@ const Navbar = () => {
   useEffect(() => {
     const getCategoriesMap = async () => {
       const categoryMap = await getCategoriesAndDocuments();
+      console.log(categoryMap)
       dispatch(setCategoriesMap(categoryMap));
     };
     getCategoriesMap();

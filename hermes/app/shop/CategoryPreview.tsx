@@ -3,6 +3,7 @@
 import Link from "next/link";
 import ProductCard from "../components/ui/ProductCard";
 import { CartProduct } from "../rtk-slices/cartSlice";
+import { Separator } from "@/components/ui/separator";
 
 export type CategoryPreviewProps = {
   title: string;
@@ -29,10 +30,11 @@ const CategoryPreview = ({ title, products }: CategoryPreviewProps) => {
         {products
           .filter((_, idx) => idx < 4)
           .map((product) => {
-            return <ProductCard product={product} key={product.id} />;
+            return <ProductCard product={product} key={product.id} category={title} />;
           })}
         
       </div>
+      <Separator className=""/>
     </div>
   );
 };

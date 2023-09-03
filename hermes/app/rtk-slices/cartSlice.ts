@@ -7,6 +7,7 @@ export type CartProduct = {
   imageUrls: string[];
   price: number;
   quantity: number;
+  size: string
   realProductURL: string;
 };
 

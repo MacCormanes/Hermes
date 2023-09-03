@@ -1,49 +1,56 @@
-"use client"
+"use client";
 
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import Image from "next/image";
 
-import { useDispatch } from 'react-redux'
-import { CartProduct, addItemToCart } from '../../rtk-slices/cartSlice'
+import { CartProduct, addItemToCart } from "../../rtk-slices/cartSlice";
+import { useAppDispatch } from "@/app/store/store";
 
 export type ProductCardProps = {
   product: CartProduct;
+  category: string;
 };
 
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product, category }) => {
   const { name, price, imageUrls } = product;
 
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch();
   return (
     <div className="mb-5 font-montserrat">
-      <div className="relative inline-block">
-        <Image
-          src={imageUrls[0]}
-          blurDataURL={imageUrls[0]}
-          alt={name}
+      <Link key={product.id} href={`/shop/${category}/${product.id}`}>
+        <div className="relative inline-block mb-1">
+          <Image
+            src={imageUrls[0]}
+            blurDataURL={imageUrls[0]}
+            alt={name}
             width={500}
             height={500}
-          priority={true}
-          className="transition-all duration-700 shadow-md rounded-xl shadow-slate-900/30"
-        />
-        <Image
-          src={imageUrls[1]}
-          blurDataURL={imageUrls[1]}
-          alt={name}
-          width={500}
-          height={500}
-          priority={true}
-          className="absolute inset-0 transition-all duration-700 ease-in-out shadow-xs opacity-0 hover:opacity-100 rounded-xl shadow-slate-900/30"
-        />
-      </div>
-      <div className="flex gap-1 mt-2">
-        <div className="w-2/3">
-          <h2 className="whitespace-normal">{name}</h2>
-          <p>$ {price.toLocaleString()}</p>
+            priority={true}
+            className="transition-all duration-700 shadow-md rounded-xl shadow-slate-900/30"
+          />
+          <Image
+            src={imageUrls[1]}
+            blurDataURL={imageUrls[1]}
+            alt={name}
+            width={500}
+            height={500}
+            priority={true}
+            className="absolute inset-0 transition-all duration-700 ease-in-out shadow-xs opacity-0 hover:opacity-100 rounded-xl shadow-slate-900/30"
+          />
         </div>
-        <Button onClick={() => dispatch(addItemToCart(product))} className="w-1/3 py-2 text-xs text-orange-900 transition-all duration-500 bg-orange-200 border border-orange-900 whitespace-nowrap hover:scale-105 hover:bg-orange-300">
-          Add to cart
-        </Button>
+      </Link>
+      <div className="flex justify-between">
+        <div className="grid">
+          <Link key={product.id} href={`/shop/${category}/${product.id}`}>
+            <h2 className="text-sm">{name}</h2>
+          </Link>
+          <Link key={product.id} href={`/shop/${category}/${product.id}`}>
+            <p className="text-lg font-medium text-orange-900">
+              $ {price.toLocaleString()}
+            </p>
+          </Link>
+        </div>
       </div>
     </div>
   );
