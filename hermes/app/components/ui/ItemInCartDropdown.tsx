@@ -1,15 +1,20 @@
-import { ProductCardProps } from "@/app/components/ui/ProductCard";
 import SelectSize from "@/app/components/ui/SelectSize";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import {
+  CartProduct,
   addItemToCart,
   decrementItemToCart,
   removeItemToCart,
 } from "../../rtk-slices/cartSlice";
 import { useAppDispatch, useAppSelector } from "@/app/store/store";
 
-const ItemInCartDropdown: React.FC<ProductCardProps> = ({ product }) => {
+export type ProductCardProps1 = {
+  product: CartProduct;
+};
+
+
+const ItemInCartDropdown: React.FC<ProductCardProps1> = ({ product }) => {
   const { name, price, imageUrls } = product;
   const cartItems = useAppSelector((state) => state.cart.cartItems);
   const selectedProduct = cartItems.find((item) => item.id === product.id);

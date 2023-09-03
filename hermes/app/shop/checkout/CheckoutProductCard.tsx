@@ -1,11 +1,11 @@
-import { ProductCardProps } from "@/app/components/ui/ProductCard";
 import SelectSize from "@/app/components/ui/SelectSize";
 import { useAppDispatch } from "@/app/store/store";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { addItemToCart, decrementItemToCart, removeItemToCart } from "@/app/rtk-slices/cartSlice";
+import { ProductCardProps1 } from "@/app/components/ui/ItemInCartDropdown";
 
-const CheckoutProductCard: React.FC<ProductCardProps> = ({ product }) => {
+const CheckoutProductCard: React.FC<ProductCardProps1> = ({ product }) => {
   const { name, price, quantity, imageUrls } = product;
   
   const dispatch = useAppDispatch()

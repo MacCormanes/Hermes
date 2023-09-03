@@ -1,21 +1,16 @@
-"use client";
-
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 
-import { CartProduct, addItemToCart } from "../../rtk-slices/cartSlice";
-import { useAppDispatch } from "@/app/store/store";
+import { CartProduct } from "../../rtk-slices/cartSlice";
 
-export type ProductCardProps = {
+export type ProductCardProps2 = {
   product: CartProduct;
   category: string;
 };
 
-const ProductCard: React.FC<ProductCardProps> = ({ product, category }) => {
+const ProductCard: React.FC<ProductCardProps2> = ({ product, category }) => {
   const { name, price, imageUrls } = product;
-
-  const dispatch = useAppDispatch();
+  
   return (
     <div className="mb-5 font-montserrat">
       <Link key={product.id} href={`/shop/${category}/${product.id}`}>
