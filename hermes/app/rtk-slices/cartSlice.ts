@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export type CartProduct = {
   id: number;
@@ -67,7 +67,7 @@ export const cartSlice = createSlice({
       state.cartCount = state.cartCount - action.payload.quantity
       state.total = state.total - (action.payload.quantity * action.payload.price)
     },
-    setCustomerDetailsPage: (state, action) => {
+    setCustomerDetailsPage: (state) => {
       state.customerDetailsPage = false
     }
   },
@@ -77,3 +77,5 @@ export const { addItemToCart, decrementItemToCart, removeItemToCart, setCustomer
   cartSlice.actions;
 
 export default cartSlice.reducer;
+
+

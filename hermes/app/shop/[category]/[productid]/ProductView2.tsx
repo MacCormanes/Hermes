@@ -73,6 +73,11 @@ const ProductView2: React.FC<ProductViewProps> = ({ product, category }) => {
 
   const [selectedSize, setSelectedSize] = useState(sizes[2]);
 
+  const handleSubmit = (e: Event) => {
+    e.preventDefault()
+
+  }
+
   return (
     <div className="bg-gradient-to-b from-orange-200 via-orange-100 to-orange-300">
       <Navbar />
@@ -192,7 +197,7 @@ const ProductView2: React.FC<ProductViewProps> = ({ product, category }) => {
                             size.inStock
                               ? "cursor-pointer bg-orange-100 text-orange-950 shadow-sm"
                               : "cursor-not-allowed bg-orange-50 text-orange-200 pointer-events-none",
-                            active ? "ring-2 ring-orange-500" : "",
+                            active ? "ring-2 ring-orange-500 bg-orange-300" : "",
                             "transition-all duration-500 group relative flex items-center justify-center rounded-md border border-orange-800 py-3 px-4 text-sm font-medium uppercase hover:bg-orange-300 focus:outline-none sm:flex-1 sm:py-6"
                           )
                         }
@@ -306,7 +311,7 @@ const ProductView2: React.FC<ProductViewProps> = ({ product, category }) => {
               <h2 className="text-sm font-medium text-gray-900">Details</h2>
 
               <div className="mt-4 space-y-6">
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-orange-900">
                   Lorem ex anim qui eu quis. Do veniam consectetur mollit sit
                   esse anim laborum Lorem. Culpa nisi do ullamco occaecat velit
                   adipisicing.

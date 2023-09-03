@@ -4,6 +4,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import userSlice from "../rtk-slices/userSlice";
 import categoriesSlice from "../rtk-slices/categoriesSlice";
 import logger from 'redux-logger'
+import someSlice from "../rtk-slices/someSlice";
 /*
 import storage from 'redux-persist/lib/storage'
 import { persistStore, persistReducer} from 'redux-persist'
@@ -13,6 +14,7 @@ export const rootReducer = combineReducers({
   cart: cartSlice,
   user: userSlice,
   categories: categoriesSlice,
+  some: someSlice,
 })
 
 export const store = configureStore({
