@@ -2,22 +2,28 @@
 
 import { fetchUsers } from '@/app/rtk-slices/someSlice';
 import { useAppDispatch, useAppSelector } from '@/app/store/store'
+import { addUserCartItems } from '@/firebase/test';
 import React from 'react'
 import { useEffect } from 'react';
+import { fetchUserCart } from '../rtk-slices/cartSlice';
+import { doc } from 'firebase/firestore';
+import { auth, db } from '@/firebase/firebase.utils';
 
 const Page = () => {
-  const users = useAppSelector(state => state.some.users)
   const dispatch = useAppDispatch()
+  const cartItems = useAppSelector(state => state.cart.cartItems)
+
 
   useEffect(() => {
-    dispatch(fetchUsers())
+    dispatch(fetchUserCart())
+    console.log(cartItems)
   }, [])
-
+  
   return (
     <div>
-      {users.map((user: any) => {
+      {cartItems.map((item) => {
         return (
-          <p key={user.id}>{user.id} {user.name}</p>
+          <p key={item.id}>{item.id} {item.name}</p>
         )
       })}
     </div>

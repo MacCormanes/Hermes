@@ -90,7 +90,7 @@ export const onAuthStateChangedListener = (callback) => {
 
 
 // Add new user to firestore and firebase auth users
-export const db = getFirestore();
+export const db = getFirestore(firebaseApp);
 export const createUserDocumentFromAuth = async (userAuth, additionalInformation = {}) => {
   if(!userAuth) return;
   

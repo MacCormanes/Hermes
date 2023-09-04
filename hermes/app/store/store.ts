@@ -3,7 +3,6 @@ import cartSlice from "../rtk-slices/cartSlice";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import userSlice from "../rtk-slices/userSlice";
 import categoriesSlice from "../rtk-slices/categoriesSlice";
-import logger from 'redux-logger'
 import someSlice from "../rtk-slices/someSlice";
 /*
 import storage from 'redux-persist/lib/storage'
@@ -19,7 +18,6 @@ export const rootReducer = combineReducers({
 
 export const store = configureStore({
   reducer: rootReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 
 /*

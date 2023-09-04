@@ -1,4 +1,6 @@
+import { auth, db } from "@/firebase/firebase.utils";
 import { PayloadAction, createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { doc, getDoc, onSnapshot } from "firebase/firestore";
 
 export type CartProduct = {
   id: number;
@@ -13,6 +15,7 @@ export type CartProduct = {
 
 type InitialState = {
   cartItems: CartProduct[],
+  loading: boolean
   total: number,
   cartCount: number
   customerDetailsPage: boolean
@@ -20,6 +23,7 @@ type InitialState = {
 
 const initialState: InitialState = {
   cartItems: [],
+  loading: false,
   total: 0,
   cartCount: 0,
   customerDetailsPage: true,
@@ -69,9 +73,30 @@ export const cartSlice = createSlice({
     },
     setCustomerDetailsPage: (state) => {
       state.customerDetailsPage = false
-    }
+    },
   },
+  extraReducers: (builder) => {
+    builder.addCase(fetchUserCart.pending, (state) => {
+      state.loading = true
+    })
+    builder.addCase(fetchUserCart.fulfilled, (state, action) => {
+      state.cartItems = action.payload
+      state.loading = false
+    })
+  }
 });
+
+export const fetchUserCart = createAsyncThunk('cart/fetchUserCart', async () => {
+  const userRef = doc(db, 'users', `${auth.currentUser?.uid}`)
+  const docSnap = await getDoc(userRef)
+  if (docSnap.exists()) {
+    console.log(JSON.stringify(docSnap.data().cart))
+    return (docSnap.data().cart);
+  } else {
+    console.log('No such document');
+    return JSON.stringify({})
+  }
+})
 
 export const { addItemToCart, decrementItemToCart, removeItemToCart, setCustomerDetailsPage } =
   cartSlice.actions;

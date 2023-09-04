@@ -1,8 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   currentUser: null,
+  userCart: {}
 };
+
+
 
 export const userSlice = createSlice({
   name: "user",
