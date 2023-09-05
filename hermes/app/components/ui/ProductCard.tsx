@@ -1,7 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import { CartProduct } from "../../rtk-slices/cartSlice";
+import { CartProduct, addItemToCart } from "../../rtk-slices/cartSlice";
+import { useAppDispatch } from "@/app/store/store";
+import { Button } from "@/components/ui/button";
 
 export type ProductCardProps2 = {
   product: CartProduct;
@@ -10,7 +12,12 @@ export type ProductCardProps2 = {
 
 const ProductCard: React.FC<ProductCardProps2> = ({ product, category }) => {
   const { name, price, imageUrls } = product;
+
+  const dispatch = useAppDispatch()
   
+  const handleAdd = () => {
+    dispatch(addItemToCart(product))
+  }
   return (
     <div className="mb-5 font-montserrat">
       <Link key={product.id} href={`/shop/${category}/${product.id}`}>
@@ -46,6 +53,7 @@ const ProductCard: React.FC<ProductCardProps2> = ({ product, category }) => {
             </p>
           </Link>
         </div>
+        <Button onClick={handleAdd}>Add to cart</Button>
       </div>
     </div>
   );

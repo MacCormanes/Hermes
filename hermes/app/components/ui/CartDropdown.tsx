@@ -37,8 +37,8 @@ const CartDropdown = () => {
           </Button>
         </SheetHeader>
         <SheetDescription className="flex flex-col h-[800px] pb-10 overflow-y-auto no-scrollbar">
-          <div>
-            {cartItems.map((item) => (
+          <div> 
+            {cartItems.length > 0 && cartItems.map((item) => (
               <ItemInCartDropdown key={item.id} product={item} />
             ))}
           </div>

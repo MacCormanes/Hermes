@@ -123,3 +123,12 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInformation
 
   return userDocRef;
 };
+
+//Update userCart when there is a change in cartItems state
+export const setUserCart = async (cartItems) => {
+  console.log('firebase.utils/setUserCart ran');
+  const userRef = doc(db, 'users', `${auth.currentUser?.uid}`)
+  await updateDoc(userRef, {
+    cart: cartItems
+  })
+}

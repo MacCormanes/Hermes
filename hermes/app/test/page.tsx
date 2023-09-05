@@ -10,22 +10,13 @@ import { doc } from 'firebase/firestore';
 import { auth, db } from '@/firebase/firebase.utils';
 
 const Page = () => {
-  const dispatch = useAppDispatch()
-  const cartItems = useAppSelector(state => state.cart.cartItems)
 
-
-  useEffect(() => {
-    dispatch(fetchUserCart())
-    console.log(cartItems)
-  }, [])
+  addUserCartItems()
   
+
   return (
     <div>
-      {cartItems.map((item) => {
-        return (
-          <p key={item.id}>{item.id} {item.name}</p>
-        )
-      })}
+      
     </div>
   )
 }

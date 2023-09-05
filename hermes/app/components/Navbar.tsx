@@ -14,6 +14,7 @@ import { useAppDispatch, useAppSelector } from "../store/store";
 import { useEffect } from "react";
 import { setCurrentUser } from "../rtk-slices/userSlice";
 import { setCategoriesMap } from "../rtk-slices/categoriesSlice";
+import { fetchUserCart } from "../rtk-slices/cartSlice";
 
 const Navbar = () => {
 
@@ -37,6 +38,11 @@ const Navbar = () => {
     };
     getCategoriesMap();
   }, []);
+
+
+ useEffect(() => {
+  dispatch(fetchUserCart())
+  }, [])
 
   const currentUser = useAppSelector((state) => state.user.currentUser)
   return (

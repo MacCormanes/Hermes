@@ -11,7 +11,7 @@ const CategoryView = ({ title, products }: CategoryPreviewProps) => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7">
         {products.map((product) => {
           return (
-            <ProductCard product={product} category={title} key={product.id} />
+            <ProductCard product={product} category={title} key={product.name}/>
           );
         })}
       </div>

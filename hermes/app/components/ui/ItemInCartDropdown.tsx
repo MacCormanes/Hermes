@@ -8,20 +8,31 @@ import {
   removeItemToCart,
 } from "../../rtk-slices/cartSlice";
 import { useAppDispatch, useAppSelector } from "@/app/store/store";
+import { useEffect } from "react";
+import { setUserCart } from "@/firebase/firebase.utils";
 
 export type ProductCardProps1 = {
   product: CartProduct;
 };
-
 
 const ItemInCartDropdown: React.FC<ProductCardProps1> = ({ product }) => {
   const { name, price, imageUrls } = product;
   const cartItems = useAppSelector((state) => state.cart.cartItems);
   const selectedProduct = cartItems.find((item) => item.id === product.id);
   const dispatch = useAppDispatch();
-  const handleDecrement = () => dispatch(decrementItemToCart(product));
-  const handleIncrement = () => dispatch(addItemToCart(product));
-  const handleRemoveItem = () => dispatch(removeItemToCart(product));
+  const handleDecrement = () => {
+    setUserCart(cartItems);
+    dispatch(decrementItemToCart(product));
+  };
+  const handleIncrement = () => {
+    setUserCart(cartItems);
+    dispatch(addItemToCart(product));
+  };
+  const handleRemoveItem = () => {
+    setUserCart(cartItems);
+    dispatch(removeItemToCart(product));
+  };
+
   return (
     <div className="flex items-center p-3 font-montserrat text-slate-500">
       <div className="flex justify-center mr-5">

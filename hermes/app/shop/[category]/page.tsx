@@ -22,6 +22,7 @@ const Category = ({ params }: CategoryProps) => {
         {Object.keys(categoriesMap).map((key) => {
           if (key === params.category) {
             const products = categoriesMap[key];
+            console.log(key)
             return <CategoryView key={key} title={key} products={products} />;
           }
         })}

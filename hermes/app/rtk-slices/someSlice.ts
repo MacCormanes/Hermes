@@ -4,7 +4,9 @@ import axios from "axios";
 export const fetchUsers = createAsyncThunk("some/fetchUsers", async () => {
   return axios
     .get("https://jsonplaceholder.typicode.com/users")
-    .then((response) => response.data);
+    .then((response) => {
+      return response.data;
+    });
 });
 
 const someSlice = createSlice({
