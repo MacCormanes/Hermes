@@ -59,7 +59,9 @@ googleProvider.setCustomParameters({
   prompt: "select_account",
 });
 export const signInWithGoogleRedirect = () =>{
-  signInWithRedirect(auth, googleProvider).then();
+  signInWithRedirect(auth, googleProvider).then(() => {
+    
+  });
 }
 
 // Yahoo Provider

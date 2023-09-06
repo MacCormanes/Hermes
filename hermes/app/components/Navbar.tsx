@@ -15,20 +15,23 @@ import { useEffect } from "react";
 import { setCurrentUser } from "../rtk-slices/userSlice";
 import { setCategoriesMap } from "../rtk-slices/categoriesSlice";
 import { fetchUserCart } from "../rtk-slices/cartSlice";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
-
+  const cartItems = useAppSelector(state => state.cart.cartItems)
   const dispatch = useAppDispatch()
+  const router = useRouter()
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener((user:any) => {
       if (user){
         createUserDocumentFromAuth(user);
+        const formattedUser = user && (({accessToken, email}) => ({accessToken,email}))(user)
+        dispatch(setCurrentUser(formattedUser))
+        router.push('/')
       }
-      const formattedUser = user && (({accessToken, email}) => ({accessToken,email}))(user)
-      dispatch(setCurrentUser(formattedUser))
     })
     return unsubscribe
-  }, []);
+  }, [cartItems]);
 
   useEffect(() => {
     const getCategoriesMap = async () => {
@@ -95,6 +98,8 @@ const Navbar = () => {
               sizes="30vw"
               priority={true}
               alt="Hermes Logo"
+              placeholder="blur"
+              blurDataURL="/hermes.svg"
             />
           </Link>
         </div>

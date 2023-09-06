@@ -1,6 +1,6 @@
 import { auth, db } from "@/firebase/firebase.utils";
 import { PayloadAction, createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { doc, getDoc, onSnapshot } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 
 export type CartProduct = {
   id: number;
@@ -89,11 +89,6 @@ export const cartSlice = createSlice({
       state.cartItems = action.payload.cartItems;
       state.cartCount = action.payload.cartCount;
       state.total = action.payload.total;
-      /*
-      const cartItemsArray = action.payload
-      state.total = cartItemsArray.reduce((acc: number, item: CartProduct) => (acc + (item.price*item.quantity)), 0)
-      state.cartCount = cartItemsArray.reduce((acc: number, item: CartProduct) => (acc + item.quantity), 0)
-      */
     });
   },
 });
@@ -104,7 +99,6 @@ export const fetchUserCart = createAsyncThunk(
     console.log("fetchUserCart ran");
 
     const userRef = doc(db, "users", `${auth.currentUser?.uid}`);
-    console.log(auth.currentUser?.uid)
     const docSnap = await getDoc(userRef);
     if (docSnap.exists() && docSnap.data().cart.length > 0) {
       const cartItemsArray = docSnap.data().cart;
@@ -130,10 +124,6 @@ export const fetchUserCart = createAsyncThunk(
     }
   }
 );
-
-/*
-export const fetchUserSnapshot = createAsyncThunk('')
-*/
 
 export const {
   addItemToCart,

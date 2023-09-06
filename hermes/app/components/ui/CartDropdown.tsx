@@ -11,11 +11,16 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import ItemInCartDropdown from "./ItemInCartDropdown";
 import { useAppSelector } from "@/app/store/store";
+import { useEffect } from "react";
 
 const CartDropdown = () => {
   const cartItems = useAppSelector(state => state.cart.cartItems)
   const total = useAppSelector(state => state.cart.total)
   const formattedNumber = total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2,});
+
+  useEffect(() => {
+  }, [cartItems])
+
   return (
     <Sheet>
       <SheetTrigger>
