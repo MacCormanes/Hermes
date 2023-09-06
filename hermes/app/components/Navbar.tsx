@@ -19,19 +19,9 @@ import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const cartItems = useAppSelector(state => state.cart.cartItems)
+  const cartCount = useAppSelector(state => state.cart.cartCount)
   const dispatch = useAppDispatch()
   const router = useRouter()
-  useEffect(() => {
-    const unsubscribe = onAuthStateChangedListener((user:any) => {
-      if (user){
-        createUserDocumentFromAuth(user);
-        const formattedUser = user && (({accessToken, email}) => ({accessToken,email}))(user)
-        dispatch(setCurrentUser(formattedUser))
-        router.push('/')
-      }
-    })
-    return unsubscribe
-  }, [cartItems]);
 
   useEffect(() => {
     const getCategoriesMap = async () => {

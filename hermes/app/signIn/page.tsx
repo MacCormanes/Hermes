@@ -13,6 +13,7 @@ import {
   auth,
   signInWithYahooRedirect,
   signInAuthUserWithEmailAndPassword,
+  onAuthStateChangedListener,
 } from "../../firebase/firebase.utils.js";
 import { getRedirectResult } from "firebase/auth";
 import { useEffect } from "react";
@@ -22,6 +23,8 @@ import { ToastAction } from "@/components/ui/toast";
 import { Toaster } from "@/components/ui/toaster";
 import { useRouter } from "next/navigation";
 import Navbar from "../components/Navbar";
+import { setCurrentUser } from "../rtk-slices/userSlice";
+import { useAppDispatch } from "../store/store";
 
 type FormTypes = {
   email: string;
@@ -34,6 +37,7 @@ const SignIn = () => {
   const { register, handleSubmit } = form;
 
   const router = useRouter();
+  const dispatch = useAppDispatch()
 
   const onSubmit = async (data: FormTypes) => {
     try {
@@ -88,6 +92,17 @@ const SignIn = () => {
   };
   useEffect(() => {
     fetchAuth();
+  }, []);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChangedListener((user:any) => {
+      if (user){
+        const formattedUser = user && (({accessToken, email}) => ({accessToken,email}))(user)
+        dispatch(setCurrentUser(formattedUser))
+        router.push('/')
+      }
+    })
+    return unsubscribe
   }, []);
 
   return (
