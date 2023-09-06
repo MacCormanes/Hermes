@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import { CartProduct, addItemToCart } from "../../rtk-slices/cartSlice";
+import { CartProduct, addCartToUserCart, addItemToCart } from "../../rtk-slices/cartSlice";
 import { useAppDispatch } from "@/app/store/store";
 import { Button } from "@/components/ui/button";
 
@@ -16,7 +16,7 @@ const ProductCard: React.FC<ProductCardProps2> = ({ product, category }) => {
   const dispatch = useAppDispatch()
   
   const handleAdd = () => {
-    dispatch(addItemToCart(product))
+    dispatch(addCartToUserCart(product))
   }
   return (
     <div className="mb-5 font-montserrat">

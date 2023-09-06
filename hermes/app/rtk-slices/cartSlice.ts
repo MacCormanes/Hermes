@@ -1,6 +1,7 @@
 import { auth, db } from "@/firebase/firebase.utils";
 import { PayloadAction, createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { AppDispatch, RootState } from "../store/store";
 
 export type CartProduct = {
   id: number;
@@ -90,6 +91,11 @@ export const cartSlice = createSlice({
       state.cartCount = action.payload.cartCount;
       state.total = action.payload.total;
     });
+    builder.addCase(addCartToUserCart.fulfilled, (state, action) => {
+      state.cartItems = action.payload.cartItems;
+      state.cartCount = action.payload.cartCount;
+      state.total = action.payload.total;
+    });
   },
 });
 
@@ -120,6 +126,64 @@ export const fetchUserCart = createAsyncThunk(
         cartItems: [],
         total: 0,
         cartCount: 0,
+      };
+    }
+  }
+);
+
+const createAppAsyncThunk = createAsyncThunk.withTypes<{
+  state: RootState;
+}>();
+
+export const addCartToUserCart = createAppAsyncThunk(
+  "cart/addCartToUserCart",
+  async (product: CartProduct, { getState }) => {
+    console.log("addCartToUserCart Thunk Ran");
+
+    const state: RootState = getState();
+
+    const currentCartItemsArray = state.cart.cartItems;
+    const currentCartCount = state.cart.cartCount;
+    const currentTotal = state.cart.total;
+
+    const existingCartItem = currentCartItemsArray.find(
+      (item) => item.id === product.id
+    );
+
+    if (existingCartItem) {
+      const newCartCount = currentCartCount + 1;
+      const newTotal = currentTotal + product.price;
+      const newCartItemsArray = currentCartItemsArray.map((item) =>
+        item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+      );
+
+      const userRef = doc(db, 'users', `${auth.currentUser?.uid}`)
+      await setDoc(userRef, {
+        cart: newCartItemsArray
+      }, {merge: true})
+
+      return {
+        cartItems: newCartItemsArray,
+        total: newTotal,
+        cartCount: newCartCount,
+      };
+    } else {
+      const newCartCount = currentCartCount + 1;
+      const newTotal = currentTotal + product.price;
+      const newCartItemsArray = [
+        ...currentCartItemsArray,
+        { ...product, quantity: 1 },
+      ];
+
+      const userRef = doc(db, 'users', `${auth.currentUser?.uid}`)
+      await setDoc(userRef, {
+        cart: newCartItemsArray
+      }, {merge: true})
+
+      return {
+        cartItems: newCartItemsArray,
+        total: newTotal,
+        cartCount: newCartCount,
       };
     }
   }
