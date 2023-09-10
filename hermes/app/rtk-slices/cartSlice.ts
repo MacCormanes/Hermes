@@ -32,14 +32,6 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    removeItemToCart: (state, action: PayloadAction<CartProduct>) => {
-      state.cartItems = state.cartItems.filter(
-        (item) => item.id !== action.payload.id
-      );
-      state.cartCount = state.cartCount - action.payload.quantity;
-      state.total =
-        state.total - action.payload.quantity * action.payload.price;
-    },
     setCustomerDetailsPage: (state) => {
       state.customerDetailsPage = false;
     },
@@ -56,7 +48,12 @@ export const cartSlice = createSlice({
       state.total = action.payload.total;
     });
     builder.addCase(decrementItemToUserCart.fulfilled, (state, action) => {
-      state.cartItems = action.payload.cartItems
+      state.cartItems = action.payload.cartItems;
+      state.cartCount = action.payload.cartCount;
+      state.total = action.payload.total;
+    });
+    builder.addCase(removeItemToUserCart.fulfilled, (state, action) => {
+      state.cartItems = action.payload.cartItems;
       state.cartCount = action.payload.cartCount;
       state.total = action.payload.total;
     });
@@ -121,10 +118,14 @@ export const addCartToUserCart = createAppAsyncThunk(
         item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
       );
 
-      const userRef = doc(db, 'users', `${auth.currentUser?.uid}`)
-      await setDoc(userRef, {
-        cart: newCartItemsArray
-      }, {merge: true})
+      const userRef = doc(db, "users", `${auth.currentUser?.uid}`);
+      await setDoc(
+        userRef,
+        {
+          cart: newCartItemsArray,
+        },
+        { merge: true }
+      );
 
       return {
         cartItems: newCartItemsArray,
@@ -139,10 +140,14 @@ export const addCartToUserCart = createAppAsyncThunk(
         { ...product, quantity: 1 },
       ];
 
-      const userRef = doc(db, 'users', `${auth.currentUser?.uid}`)
-      await setDoc(userRef, {
-        cart: newCartItemsArray
-      }, {merge: true})
+      const userRef = doc(db, "users", `${auth.currentUser?.uid}`);
+      await setDoc(
+        userRef,
+        {
+          cart: newCartItemsArray,
+        },
+        { merge: true }
+      );
 
       return {
         cartItems: newCartItemsArray,
@@ -154,9 +159,9 @@ export const addCartToUserCart = createAppAsyncThunk(
 );
 
 export const decrementItemToUserCart = createAppAsyncThunk(
-  'cart/decrementItemToUserCart', 
-  async (product: CartProduct, {getState}) => {
-    console.log('decrementItemToUserCart Thunk Ran')
+  "cart/decrementItemToUserCart",
+  async (product: CartProduct, { getState }) => {
+    console.log("decrementItemToUserCart Thunk Ran");
 
     const state: RootState = getState();
 
@@ -165,40 +170,53 @@ export const decrementItemToUserCart = createAppAsyncThunk(
     const currentTotal = state.cart.total;
 
     const itemToDecrement = currentCartItemsArray.find(
-        (item) => item.id === product.id
-      );
+      (item) => item.id === product.id
+    );
 
     if (itemToDecrement) {
       if (itemToDecrement.quantity > 1) {
         const newCartItemsArray = currentCartItemsArray.map((item) =>
-          item.id === product.id ? { ...item, quantity: item.quantity - 1 } : item
-          );
+          item.id === product.id
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        );
         const newTotal = currentTotal - itemToDecrement.price;
         const newCartCount = currentCartCount - 1;
 
-        const userRef = doc(db, 'users', `${auth.currentUser?.uid}`)
-        await setDoc(userRef, {
-          cart: newCartItemsArray
-        }, {merge: true})
+        const userRef = doc(db, "users", `${auth.currentUser?.uid}`);
+        await setDoc(
+          userRef,
+          {
+            cart: newCartItemsArray,
+          },
+          { merge: true }
+        );
 
-      return {
-        cartItems: newCartItemsArray,
-        total: newTotal,
-        cartCount: newCartCount,
-      };
+        return {
+          cartItems: newCartItemsArray,
+          total: newTotal,
+          cartCount: newCartCount,
+        };
       } else {
         const indexToRemove = currentCartItemsArray.findIndex(
           (item) => item.id === product.id
         );
         if (indexToRemove !== -1) {
-          const newCartItemsArray = currentCartItemsArray.splice(indexToRemove, 1);
+          const newCartItemsArray = currentCartItemsArray.splice(
+            indexToRemove,
+            1
+          );
           const newTotal = currentTotal - itemToDecrement.price;
           const newCartCount = currentCartCount - 1;
 
-          const userRef = doc(db, 'users', `${auth.currentUser?.uid}`)
-          await setDoc(userRef, {
-            cart: newCartItemsArray
-          }, {merge: true})
+          const userRef = doc(db, "users", `${auth.currentUser?.uid}`);
+          await setDoc(
+            userRef,
+            {
+              cart: newCartItemsArray,
+            },
+            { merge: true }
+          );
 
           return {
             cartItems: newCartItemsArray,
@@ -208,18 +226,53 @@ export const decrementItemToUserCart = createAppAsyncThunk(
         }
       }
     }
-    
+
     return {
       cartItems: currentCartItemsArray,
       total: currentTotal,
       cartCount: currentCartCount,
-    }
+    };
   }
-)
+);
 
-export const {
-  removeItemToCart,
-  setCustomerDetailsPage,
-} = cartSlice.actions;
+export const removeItemToUserCart = createAppAsyncThunk(
+  "cart/removeItemToUserCart",
+  async (product: CartProduct, { getState }) => {
+    console.log("Removing the selected item to cart.");
+
+    const state: RootState = getState();
+
+    const currentCartItemsArray = state.cart.cartItems;
+
+    const newCartItemsArray = currentCartItemsArray.filter(
+      (item) => item.id !== product.id
+    );
+    const newCartCount = newCartItemsArray.reduce(
+      (acc: number, item: CartProduct) => acc + item.quantity,
+      0
+    );
+    const newTotal = newCartItemsArray.reduce(
+      (acc: number, item: CartProduct) => acc + item.price * item.quantity,
+      0
+    );
+
+    const userRef = doc(db, "users", `${auth.currentUser?.uid}`);
+    await setDoc(
+      userRef,
+      {
+        cart: newCartItemsArray,
+      },
+      { merge: true }
+    );
+
+    return {
+      cartItems: newCartItemsArray,
+      total: newTotal,
+      cartCount: newCartCount,
+    };
+  }
+);
+
+export const { setCustomerDetailsPage } = cartSlice.actions;
 
 export default cartSlice.reducer;

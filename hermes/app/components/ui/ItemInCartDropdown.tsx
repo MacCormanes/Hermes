@@ -5,11 +5,10 @@ import {
   CartProduct,
   addCartToUserCart,
   decrementItemToUserCart,
-  removeItemToCart,
+  removeItemToUserCart,
 } from "../../rtk-slices/cartSlice";
 import { useAppDispatch, useAppSelector } from "@/app/store/store";
 import { setUserCart } from "@/firebase/firebase.utils";
-import { useEffect } from "react";
 
 export type ProductCardProps1 = {
   product: CartProduct;
@@ -31,7 +30,7 @@ const ItemInCartDropdown: React.FC<ProductCardProps1> = ({ product }) => {
   };
   const handleRemoveItem = () => {
     setUserCart(cartItems);
-    dispatch(removeItemToCart(product));
+    dispatch(removeItemToUserCart(product));
   };
 
   return (

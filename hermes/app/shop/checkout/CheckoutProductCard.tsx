@@ -2,7 +2,7 @@ import SelectSize from "@/app/components/ui/SelectSize";
 import { useAppDispatch } from "@/app/store/store";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { addCartToUserCart, decrementItemToUserCart, removeItemToCart } from "@/app/rtk-slices/cartSlice";
+import { addCartToUserCart, decrementItemToUserCart, removeItemToUserCart } from "@/app/rtk-slices/cartSlice";
 import { ProductCardProps1 } from "@/app/components/ui/ItemInCartDropdown";
 
 const CheckoutProductCard: React.FC<ProductCardProps1> = ({ product }) => {
@@ -12,7 +12,7 @@ const CheckoutProductCard: React.FC<ProductCardProps1> = ({ product }) => {
 
   const handleDecrement = () => dispatch(decrementItemToUserCart(product));
   const handleIncrement = () => dispatch(addCartToUserCart(product))
-  const handleRemoveItem = () => dispatch(removeItemToCart(product));
+  const handleRemoveItem = () => dispatch(removeItemToUserCart(product));
 
   return (
     <div className="flex items-center p-3 ml-5 font-montserrat text-slate-500">
