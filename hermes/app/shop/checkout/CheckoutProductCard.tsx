@@ -2,7 +2,7 @@ import SelectSize from "@/app/components/ui/SelectSize";
 import { useAppDispatch } from "@/app/store/store";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { addItemToCart, decrementItemToCart, removeItemToCart } from "@/app/rtk-slices/cartSlice";
+import { addCartToUserCart, decrementItemToUserCart, removeItemToCart } from "@/app/rtk-slices/cartSlice";
 import { ProductCardProps1 } from "@/app/components/ui/ItemInCartDropdown";
 
 const CheckoutProductCard: React.FC<ProductCardProps1> = ({ product }) => {
@@ -10,8 +10,8 @@ const CheckoutProductCard: React.FC<ProductCardProps1> = ({ product }) => {
   
   const dispatch = useAppDispatch()
 
-  const handleDecrement = () => dispatch(decrementItemToCart(product));
-  const handleIncrement = () => dispatch(addItemToCart(product));
+  const handleDecrement = () => dispatch(decrementItemToUserCart(product));
+  const handleIncrement = () => dispatch(addCartToUserCart(product))
   const handleRemoveItem = () => dispatch(removeItemToCart(product));
 
   return (

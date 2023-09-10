@@ -1,7 +1,7 @@
 import { auth, db } from "@/firebase/firebase.utils";
 import { PayloadAction, createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { doc, getDoc, setDoc } from "firebase/firestore";
-import { AppDispatch, RootState } from "../store/store";
+import { RootState } from "../store/store";
 
 export type CartProduct = {
   id: number;
@@ -32,47 +32,6 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addItemToCart: (state, action: PayloadAction<CartProduct>) => {
-      const existingCartItem = state.cartItems.find(
-        (item) => item.id === action.payload.id
-      );
-
-      if (existingCartItem) {
-        state.cartCount++;
-        state.total = state.total + action.payload.price;
-        state.cartItems = state.cartItems.map((item) =>
-          item.id === action.payload.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      } else {
-        state.cartCount++;
-        state.total = state.total + action.payload.price;
-        state.cartItems.push({ ...action.payload, quantity: 1 });
-      }
-    },
-    decrementItemToCart: (state, action: PayloadAction<CartProduct>) => {
-      const itemToDecrement = state.cartItems.find(
-        (item) => item.id === action.payload.id
-      );
-
-      if (itemToDecrement) {
-        if (itemToDecrement.quantity > 1) {
-          itemToDecrement.quantity--;
-          state.total -= itemToDecrement.price;
-          state.cartCount--;
-        } else {
-          const indexToRemove = state.cartItems.findIndex(
-            (item) => item.id === action.payload.id
-          );
-          if (indexToRemove !== -1) {
-            state.cartItems.splice(indexToRemove, 1);
-            state.cartCount--;
-            state.total -= itemToDecrement.price;
-          }
-        }
-      }
-    },
     removeItemToCart: (state, action: PayloadAction<CartProduct>) => {
       state.cartItems = state.cartItems.filter(
         (item) => item.id !== action.payload.id
@@ -93,6 +52,11 @@ export const cartSlice = createSlice({
     });
     builder.addCase(addCartToUserCart.fulfilled, (state, action) => {
       state.cartItems = action.payload.cartItems;
+      state.cartCount = action.payload.cartCount;
+      state.total = action.payload.total;
+    });
+    builder.addCase(decrementItemToUserCart.fulfilled, (state, action) => {
+      state.cartItems = action.payload.cartItems
       state.cartCount = action.payload.cartCount;
       state.total = action.payload.total;
     });
@@ -189,9 +153,71 @@ export const addCartToUserCart = createAppAsyncThunk(
   }
 );
 
+export const decrementItemToUserCart = createAppAsyncThunk(
+  'cart/decrementItemToUserCart', 
+  async (product: CartProduct, {getState}) => {
+    console.log('decrementItemToUserCart Thunk Ran')
+
+    const state: RootState = getState();
+
+    const currentCartItemsArray = state.cart.cartItems;
+    const currentCartCount = state.cart.cartCount;
+    const currentTotal = state.cart.total;
+
+    const itemToDecrement = currentCartItemsArray.find(
+        (item) => item.id === product.id
+      );
+
+    if (itemToDecrement) {
+      if (itemToDecrement.quantity > 1) {
+        const newCartItemsArray = currentCartItemsArray.map((item) =>
+          item.id === product.id ? { ...item, quantity: item.quantity - 1 } : item
+          );
+        const newTotal = currentTotal - itemToDecrement.price;
+        const newCartCount = currentCartCount - 1;
+
+        const userRef = doc(db, 'users', `${auth.currentUser?.uid}`)
+        await setDoc(userRef, {
+          cart: newCartItemsArray
+        }, {merge: true})
+
+      return {
+        cartItems: newCartItemsArray,
+        total: newTotal,
+        cartCount: newCartCount,
+      };
+      } else {
+        const indexToRemove = currentCartItemsArray.findIndex(
+          (item) => item.id === product.id
+        );
+        if (indexToRemove !== -1) {
+          const newCartItemsArray = currentCartItemsArray.splice(indexToRemove, 1);
+          const newTotal = currentTotal - itemToDecrement.price;
+          const newCartCount = currentCartCount - 1;
+
+          const userRef = doc(db, 'users', `${auth.currentUser?.uid}`)
+          await setDoc(userRef, {
+            cart: newCartItemsArray
+          }, {merge: true})
+
+          return {
+            cartItems: newCartItemsArray,
+            total: newTotal,
+            cartCount: newCartCount,
+          };
+        }
+      }
+    }
+    
+    return {
+      cartItems: currentCartItemsArray,
+      total: currentTotal,
+      cartCount: currentCartCount,
+    }
+  }
+)
+
 export const {
-  addItemToCart,
-  decrementItemToCart,
   removeItemToCart,
   setCustomerDetailsPage,
 } = cartSlice.actions;

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import { CartProduct, addCartToUserCart, addItemToCart } from "../../rtk-slices/cartSlice";
+import { CartProduct, addCartToUserCart } from "../../rtk-slices/cartSlice";
 import { useAppDispatch } from "@/app/store/store";
 import { Button } from "@/components/ui/button";
 

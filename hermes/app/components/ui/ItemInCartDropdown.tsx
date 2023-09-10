@@ -3,13 +3,13 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import {
   CartProduct,
-  addItemToCart,
-  decrementItemToCart,
+  addCartToUserCart,
+  decrementItemToUserCart,
   removeItemToCart,
 } from "../../rtk-slices/cartSlice";
 import { useAppDispatch, useAppSelector } from "@/app/store/store";
-import { useEffect } from "react";
 import { setUserCart } from "@/firebase/firebase.utils";
+import { useEffect } from "react";
 
 export type ProductCardProps1 = {
   product: CartProduct;
@@ -20,13 +20,14 @@ const ItemInCartDropdown: React.FC<ProductCardProps1> = ({ product }) => {
   const cartItems = useAppSelector((state) => state.cart.cartItems);
   const selectedProduct = cartItems.find((item) => item.id === product.id);
   const dispatch = useAppDispatch();
+
   const handleDecrement = () => {
     setUserCart(cartItems);
-    dispatch(decrementItemToCart(product));
+    dispatch(decrementItemToUserCart(product));
   };
   const handleIncrement = () => {
     setUserCart(cartItems);
-    dispatch(addItemToCart(product));
+    dispatch(addCartToUserCart(product))
   };
   const handleRemoveItem = () => {
     setUserCart(cartItems);
