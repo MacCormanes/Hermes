@@ -12,16 +12,12 @@ import { createUserDocumentFromAuth, getCategoriesAndDocuments, onAuthStateChang
 import CartDropdown from "./ui/CartDropdown";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import { useEffect } from "react";
-import { setCurrentUser } from "../rtk-slices/userSlice";
 import { setCategoriesMap } from "../rtk-slices/categoriesSlice";
 import { fetchUserCart } from "../rtk-slices/cartSlice";
-import { useRouter } from "next/navigation";
 
 const Navbar = () => {
-  const cartItems = useAppSelector(state => state.cart.cartItems)
-  const cartCount = useAppSelector(state => state.cart.cartCount)
+  const currentUser = useAppSelector((state) => state.user.currentUser)
   const dispatch = useAppDispatch()
-  const router = useRouter()
 
   useEffect(() => {
     const getCategoriesMap = async () => {
@@ -37,7 +33,9 @@ const Navbar = () => {
   dispatch(fetchUserCart())
   }, [])
 
-  const currentUser = useAppSelector((state) => state.user.currentUser)
+  useEffect(() => {
+    }, [currentUser])
+
   return (
     <div className="flex items-center justify-between p-0 m-0 bg-orange-200 font-montserrat text-orange-950 h-[80px] min-w-full">
       <Sheet>
