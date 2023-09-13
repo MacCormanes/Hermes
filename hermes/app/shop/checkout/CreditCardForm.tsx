@@ -35,7 +35,7 @@ const CreditCardForm = () => {
   const { errors } = formState;
 
   const handleTransition = () => {
-    dispatch(setCustomerDetailsPage(false))
+    dispatch(setCustomerDetailsPage())
   }
 
   return (
