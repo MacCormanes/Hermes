@@ -111,7 +111,7 @@ const Navbar = () => {
             Sign Out
           </button>
         ) : (
-          <Link href="/signin">
+          <Link href="/signIn">
             <span className="">Sign In</span>
           </Link>
         )}
