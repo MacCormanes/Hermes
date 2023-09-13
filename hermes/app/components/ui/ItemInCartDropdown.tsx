@@ -15,7 +15,7 @@ export type ProductCardProps1 = {
 };
 
 const ItemInCartDropdown: React.FC<ProductCardProps1> = ({ product }) => {
-  const { name, price, imageUrls } = product;
+  const { name, price, imageUrls, size } = product;
   const cartItems = useAppSelector((state) => state.cart.cartItems);
   const selectedProduct = cartItems.find((item) => item.id === product.id);
   const dispatch = useAppDispatch();
@@ -26,7 +26,7 @@ const ItemInCartDropdown: React.FC<ProductCardProps1> = ({ product }) => {
   };
   const handleIncrement = () => {
     setUserCart(cartItems);
-    dispatch(addCartToUserCart(product))
+    dispatch(addCartToUserCart({product, size}))
   };
   const handleRemoveItem = () => {
     setUserCart(cartItems);
@@ -49,7 +49,7 @@ const ItemInCartDropdown: React.FC<ProductCardProps1> = ({ product }) => {
         <span className="mb-1 text-sm font-light text-orange-950">
           $ {price.toLocaleString()}
         </span>
-        <SelectSize />
+        <span className="mb-1 text-sm font-light text-orange-950">Size: <b className="font-semibold">{selectedProduct!.size}</b></span>
         <div className="absolute bottom-0 left-0 text-orange-900 transition-all duration-300 border border-orange-300 rounded-md">
           <Button
             variant="outline"

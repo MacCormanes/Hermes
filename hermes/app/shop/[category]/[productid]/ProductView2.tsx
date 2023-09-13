@@ -27,13 +27,15 @@ import Image from "next/image";
 import Navbar from "@/app/components/Navbar";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
+import { useAppDispatch } from "@/app/store/store";
+import { addCartToUserCart } from "@/app/rtk-slices/cartSlice";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
 export type CartProduct = {
-  id: number;
+  id: string;
   name: string;
   thumbnail: string;
   imageUrls: string[];
@@ -49,6 +51,8 @@ type ProductViewProps = {
 };
 
 const ProductView2: React.FC<ProductViewProps> = ({ product, category }) => {
+  const dispatch = useAppDispatch()
+
   const breadcrumbCategory = category === 'mens' ? 'Mens' : 'Womens'
   const sizes = [
     { name: "XXS", inStock: false },
@@ -73,9 +77,8 @@ const ProductView2: React.FC<ProductViewProps> = ({ product, category }) => {
 
   const [selectedSize, setSelectedSize] = useState(sizes[2]);
 
-  const handleSubmit = (e: Event) => {
-    e.preventDefault()
-
+  const handleSubmit = () => {
+    dispatch(addCartToUserCart({product, size: selectedSize.name}))
   }
 
   return (
@@ -171,7 +174,7 @@ const ProductView2: React.FC<ProductViewProps> = ({ product, category }) => {
               $ {product.price.toLocaleString()}
             </p>
 
-            <form className="mt-10">
+            <div className="mt-10">
               {/* Sizes */}
               <div className="mt-10">
                 <div className="flex items-center justify-between">
@@ -248,12 +251,13 @@ const ProductView2: React.FC<ProductViewProps> = ({ product, category }) => {
               </div>
 
               <button
-                type="submit"
+                type="button"
+                onClick={() => handleSubmit()}
                 className="flex items-center justify-center w-full px-8 py-3 mt-10 text-base font-medium text-white transition-all duration-500 bg-orange-600 border border-transparent rounded-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               >
                 Add to bag
               </button>
-            </form>
+            </div>
           </div>
 
           <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-orange-700 lg:pb-16 lg:pr-8 lg:pt-6">

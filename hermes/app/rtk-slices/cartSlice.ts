@@ -1,10 +1,10 @@
 import { auth, db } from "@/firebase/firebase.utils";
-import { PayloadAction, createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { RootState } from "../store/store";
 
 export type CartProduct = {
-  id: number;
+  id: string;
   name: string;
   thumbnail: string;
   imageUrls: string[];
@@ -57,6 +57,9 @@ export const cartSlice = createSlice({
       state.cartCount = action.payload.cartCount;
       state.total = action.payload.total;
     });
+    builder.addCase(changeSizeInUserCart.fulfilled, (state, action) => {
+      state.cartItems = action.payload.cartItems;
+    });
   },
 });
 
@@ -98,7 +101,16 @@ const createAppAsyncThunk = createAsyncThunk.withTypes<{
 
 export const addCartToUserCart = createAppAsyncThunk(
   "cart/addCartToUserCart",
-  async (product: CartProduct, { getState }) => {
+  async (
+    {
+      product,
+      size,
+    }: {
+      product: CartProduct;
+      size: string;
+    },
+    { getState }
+  ) => {
     console.log("addCartToUserCart Thunk Ran");
 
     const state: RootState = getState();
@@ -106,16 +118,19 @@ export const addCartToUserCart = createAppAsyncThunk(
     const currentCartItemsArray = state.cart.cartItems;
     const currentCartCount = state.cart.cartCount;
     const currentTotal = state.cart.total;
+    const newProdId = `${product.id}${size}`;
 
     const existingCartItem = currentCartItemsArray.find(
-      (item) => item.id === product.id
+      (item) => item.id === newProdId
     );
 
     if (existingCartItem) {
       const newCartCount = currentCartCount + 1;
       const newTotal = currentTotal + product.price;
       const newCartItemsArray = currentCartItemsArray.map((item) =>
-        item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+        item.id === product.id
+          ? { ...item, quantity: item.quantity + 1, size: size }
+          : item
       );
 
       const userRef = doc(db, "users", `${auth.currentUser?.uid}`);
@@ -137,7 +152,7 @@ export const addCartToUserCart = createAppAsyncThunk(
       const newTotal = currentTotal + product.price;
       const newCartItemsArray = [
         ...currentCartItemsArray,
-        { ...product, quantity: 1 },
+        { ...product, quantity: 1, size: size, id: newProdId },
       ];
 
       const userRef = doc(db, "users", `${auth.currentUser?.uid}`);
@@ -270,6 +285,46 @@ export const removeItemToUserCart = createAppAsyncThunk(
       total: newTotal,
       cartCount: newCartCount,
     };
+  }
+);
+
+export const changeSizeInUserCart = createAppAsyncThunk(
+  "cart/changeSizeInUserCart",
+  async (
+    { product, size }: { product: CartProduct; size: string },
+    { getState }
+  ) => {
+    console.log("changeSizeInUserCart Thunk Ran");
+
+    const state: RootState = getState();
+    const currentCartItemsArray = state.cart.cartItems;
+
+    const itemToChangeSize = currentCartItemsArray.find(
+      (item) => item.id === product.id
+    );
+
+    if (itemToChangeSize) {
+      const newCartItemsArray = currentCartItemsArray.map((item) =>
+        item.id === product.id ? { ...item, size: size } : item
+      );
+
+      const userRef = doc(db, "users", `${auth.currentUser?.uid}`);
+      await setDoc(
+        userRef,
+        {
+          cart: newCartItemsArray,
+        },
+        { merge: true }
+      );
+
+      return {
+        cartItems: newCartItemsArray,
+      };
+    } else {
+      return {
+        cartItems: currentCartItemsArray,
+      };
+    }
   }
 );
 

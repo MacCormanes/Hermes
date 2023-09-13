@@ -6,12 +6,12 @@ import { addCartToUserCart, decrementItemToUserCart, removeItemToUserCart } from
 import { ProductCardProps1 } from "@/app/components/ui/ItemInCartDropdown";
 
 const CheckoutProductCard: React.FC<ProductCardProps1> = ({ product }) => {
-  const { name, price, quantity, imageUrls } = product;
+  const { name, price, quantity, imageUrls, size } = product;
   
   const dispatch = useAppDispatch()
 
   const handleDecrement = () => dispatch(decrementItemToUserCart(product));
-  const handleIncrement = () => dispatch(addCartToUserCart(product))
+  const handleIncrement = () => dispatch(addCartToUserCart({product, size}))
   const handleRemoveItem = () => dispatch(removeItemToUserCart(product));
 
   return (

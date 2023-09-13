@@ -12,9 +12,8 @@ const Page = ({
   const categoriesMap = useAppSelector(
     (state) => state.categories.categoriesMap
   );
-  const productId = parseInt(params.productid)
   const products = categoriesMap[params.category]
-  const product = products.find(item => item.id === productId)
+  const product = products.find(item => item.id === params.productid)
 
   // Check if product is defined before passing it as a prop
   return (

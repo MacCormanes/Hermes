@@ -11,13 +11,15 @@ export type ProductCardProps2 = {
 };
 
 const ProductCard: React.FC<ProductCardProps2> = ({ product, category }) => {
-  const { name, price, imageUrls } = product;
+  const { name, price, imageUrls, size } = product;
 
+  /*
   const dispatch = useAppDispatch()
   
   const handleAdd = () => {
-    dispatch(addCartToUserCart(product))
+    dispatch(addCartToUserCart({product, size}))
   }
+  */
   return (
     <div className="mb-5 font-montserrat">
       <Link key={product.id} href={`/shop/${category}/${product.id}`}>
@@ -53,7 +55,9 @@ const ProductCard: React.FC<ProductCardProps2> = ({ product, category }) => {
             </p>
           </Link>
         </div>
+        {/*
         <Button onClick={handleAdd}>Add to cart</Button>
+        */}
       </div>
     </div>
   );
