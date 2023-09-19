@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import ReduxProvider from "./store/ReduxProvider";
+import Navbar from "./components/Navbar";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -22,7 +23,9 @@ export default function RootLayout({
     <html lang="en" className={`${montserrat.variable}`}>
       <body>
         <ReduxProvider>
+          <Navbar />
             {children}
+            
         </ReduxProvider>
       </body>
     </html>

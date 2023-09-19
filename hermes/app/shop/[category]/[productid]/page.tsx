@@ -21,7 +21,7 @@ const Page = ({
       {product ? (
         <ProductView2 product={product} category={params.category}/>
       ) : (
-        <><h1>Product does not exist</h1></>
+        <h1>Product does not exist</h1>
       )}
     </div>
   );

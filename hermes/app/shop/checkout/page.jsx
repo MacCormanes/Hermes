@@ -1,6 +1,5 @@
 "use client";
 
-import Navbar from "@/app/components/Navbar";
 import React, { useEffect, useState } from "react";
 import CheckoutProductCard from "./CheckoutProductCard";
 import { Input } from "@/components/ui/input";
@@ -76,7 +75,6 @@ const Checkout = () => {
 
   return (
     <div className="">
-      <Navbar />
       <div className="flex h-[100vh]">
         <div className="w-full bg-gradient-to-br from-orange-200 to-orange-50">
           <div className="">

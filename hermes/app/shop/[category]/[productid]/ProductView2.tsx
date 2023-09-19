@@ -24,7 +24,6 @@
 import { useState } from "react";
 import { RadioGroup } from "@headlessui/react";
 import Image from "next/image";
-import Navbar from "@/app/components/Navbar";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { useAppDispatch } from "@/app/store/store";
@@ -83,7 +82,6 @@ const ProductView2: React.FC<ProductViewProps> = ({ product, category }) => {
 
   return (
     <div className="bg-gradient-to-b from-orange-200 via-orange-100 to-orange-300">
-      <Navbar />
       <div className="pt-6">
         <nav aria-label="Breadcrumb">
           <ol

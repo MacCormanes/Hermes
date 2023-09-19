@@ -22,7 +22,6 @@ import { toast } from "@/components/ui/use-toast";
 import { ToastAction } from "@/components/ui/toast";
 import { Toaster } from "@/components/ui/toaster";
 import { useRouter } from "next/navigation";
-import Navbar from "../components/Navbar";
 import { setCurrentUser } from "../rtk-slices/userSlice";
 import { useAppDispatch } from "../store/store";
 
@@ -107,7 +106,6 @@ const SignIn = () => {
 
   return (
     <div className="w-full h-full bg-gradient-to-br from-orange-300 via-orange-200 to-orange-300 font-spline">
-      <Navbar />
       <div className="mx-auto my-0 flex h-[100vh] w-1/3 flex-col py-[130px] text-orange-900">
         <Image
           src={logo}
