@@ -1,7 +1,6 @@
 "use client";
 
 import Lottie from "lottie-react";
-import groovyWalkAnimation from "./groovyWalk.json";
 import ps from "./ps.json";
 import fireworks from './fireworks.json'
 
