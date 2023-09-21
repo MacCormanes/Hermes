@@ -17,7 +17,10 @@ const CartDropdown = () => {
   const cartItems = useAppSelector(state => state.cart.cartItems)
   const total = useAppSelector(state => state.cart.total)
   const formattedNumber = total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2,});
-
+  const categoriesMap = useAppSelector(state => state.categories.categoriesMap)
+  const mensArray = categoriesMap.mens
+  const womensArray = categoriesMap.womens
+  
   useEffect(() => {
   }, [cartItems])
 
@@ -44,7 +47,7 @@ const CartDropdown = () => {
         <SheetDescription className="flex flex-col h-[800px] pb-10 overflow-y-auto no-scrollbar">
           <div> 
             {cartItems.length > 0 && cartItems.map((item) => (
-              <ItemInCartDropdown key={item.id} product={item} />
+              <ItemInCartDropdown key={item.id} product={item} mens={mensArray} womens={womensArray}/>
             ))}
           </div>
         </SheetDescription>

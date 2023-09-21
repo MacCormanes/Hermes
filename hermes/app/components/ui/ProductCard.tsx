@@ -4,13 +4,15 @@ import Image from "next/image";
 import { CartProduct, addCartToUserCart } from "../../rtk-slices/cartSlice";
 import { useAppDispatch } from "@/app/store/store";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 export type ProductCardProps2 = {
   product: CartProduct;
   category: string;
+  className?: string;
 };
 
-const ProductCard: React.FC<ProductCardProps2> = ({ product, category }) => {
+const ProductCard: React.FC<ProductCardProps2> = ({ product, category, className, ...props }) => {
   const { name, price, imageUrls, size } = product;
 
   /*
@@ -21,7 +23,7 @@ const ProductCard: React.FC<ProductCardProps2> = ({ product, category }) => {
   }
   */
   return (
-    <div className="mb-5 font-montserrat">
+    <div className={cn("mb-5 font-montserrat", className)} {...props}>
       <Link key={product.id} href={`/shop/${category}/${product.id}`}>
         <div className="relative inline-block mb-1">
           <Image

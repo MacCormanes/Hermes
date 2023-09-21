@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import ReduxProvider from "./store/ReduxProvider";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -25,7 +26,7 @@ export default function RootLayout({
         <ReduxProvider>
           <Navbar />
             {children}
-            
+          <Footer/>
         </ReduxProvider>
       </body>
     </html>

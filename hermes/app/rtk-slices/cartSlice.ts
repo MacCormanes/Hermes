@@ -105,9 +105,11 @@ export const addCartToUserCart = createAppAsyncThunk(
     {
       product,
       size,
+      productid,
     }: {
       product: CartProduct;
       size: string;
+      productid: string
     },
     { getState }
   ) => {
@@ -118,7 +120,8 @@ export const addCartToUserCart = createAppAsyncThunk(
     const currentCartItemsArray = state.cart.cartItems;
     const currentCartCount = state.cart.cartCount;
     const currentTotal = state.cart.total;
-    const newProdId = `${product.id}${size}`;
+    
+    const newProdId = `${productid}${size}`;
 
     const existingCartItem = currentCartItemsArray.find(
       (item) => item.id === newProdId
@@ -128,7 +131,7 @@ export const addCartToUserCart = createAppAsyncThunk(
       const newCartCount = currentCartCount + 1;
       const newTotal = currentTotal + product.price;
       const newCartItemsArray = currentCartItemsArray.map((item) =>
-        item.id === product.id
+        item.id === newProdId
           ? { ...item, quantity: item.quantity + 1, size: size }
           : item
       );

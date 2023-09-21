@@ -12,7 +12,6 @@ export default function Home() {
       <PrimaryHero />
       <Directory />
       <SecondaryHero />
-      <Footer />
       <BackToTopButton />
     </div>
   );

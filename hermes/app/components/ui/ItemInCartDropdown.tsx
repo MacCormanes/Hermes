@@ -12,13 +12,16 @@ import { setUserCart } from "@/firebase/firebase.utils";
 
 export type ProductCardProps1 = {
   product: CartProduct;
+  mens: CartProduct[]
+  womens: CartProduct[]
 };
 
-const ItemInCartDropdown: React.FC<ProductCardProps1> = ({ product }) => {
-  const { name, price, imageUrls, size } = product;
+const ItemInCartDropdown: React.FC<ProductCardProps1> = ({ product, mens, womens }) => {
+  const { name, price, imageUrls, size, quantity } = product;
   const cartItems = useAppSelector((state) => state.cart.cartItems);
-  const selectedProduct = cartItems.find((item) => item.id === product.id);
+  const selectedProduct = mens.find(item => item.name === name) || womens.find(item => item.name === name)
   const dispatch = useAppDispatch();
+  
 
   const handleDecrement = () => {
     setUserCart(cartItems);
@@ -26,7 +29,7 @@ const ItemInCartDropdown: React.FC<ProductCardProps1> = ({ product }) => {
   };
   const handleIncrement = () => {
     setUserCart(cartItems);
-    dispatch(addCartToUserCart({product, size}))
+    dispatch(addCartToUserCart({product, size, productid: selectedProduct!.id}))
   };
   const handleRemoveItem = () => {
     setUserCart(cartItems);
@@ -49,7 +52,7 @@ const ItemInCartDropdown: React.FC<ProductCardProps1> = ({ product }) => {
         <span className="mb-1 text-sm font-light text-orange-950">
           $ {price.toLocaleString()}
         </span>
-        <span className="mb-1 text-sm font-light text-orange-950">Size: <b className="font-semibold">{selectedProduct!.size}</b></span>
+        <span className="mb-1 text-sm font-light text-orange-950">Size: <b className="font-semibold">{size}</b></span>
         <div className="absolute bottom-0 left-0 text-orange-900 transition-all duration-300 border border-orange-300 rounded-md">
           <Button
             variant="outline"
@@ -61,7 +64,7 @@ const ItemInCartDropdown: React.FC<ProductCardProps1> = ({ product }) => {
             </span>
           </Button>
           <span className="items-center px-2 py-1 text-sm border-none pointer-events-none">
-            {selectedProduct?.quantity}
+            {quantity}
           </span>
           <Button
             variant="outline"

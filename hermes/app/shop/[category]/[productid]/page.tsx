@@ -19,7 +19,7 @@ const Page = ({
   return (
     <div>
       {product ? (
-        <ProductView2 product={product} category={params.category}/>
+        <ProductView2 product={product} category={params.category} productid={params.productid}/>
       ) : (
         <h1>Product does not exist</h1>
       )}

@@ -21,13 +21,16 @@
   }
   ```
 */
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { RadioGroup } from "@headlessui/react";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
-import { useAppDispatch } from "@/app/store/store";
+import { useAppDispatch, useAppSelector } from "@/app/store/store";
 import { addCartToUserCart } from "@/app/rtk-slices/cartSlice";
+import Lottie from "lottie-react";
+import atc from '../../../../app/components/ui/Animations/add-to-cart.json'
+import { setUserCart } from "@/firebase/firebase.utils";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -47,9 +50,10 @@ export type CartProduct = {
 type ProductViewProps = {
   product: CartProduct;
   category: string;
+  productid: string
 };
 
-const ProductView2: React.FC<ProductViewProps> = ({ product, category }) => {
+const ProductView2: React.FC<ProductViewProps> = ({ product, category, productid }) => {
   const dispatch = useAppDispatch()
 
   const breadcrumbCategory = category === 'mens' ? 'Mens' : 'Womens'
@@ -75,9 +79,20 @@ const ProductView2: React.FC<ProductViewProps> = ({ product, category }) => {
   ];
 
   const [selectedSize, setSelectedSize] = useState(sizes[2]);
-
+  const cartItems = useAppSelector(state => state.cart.cartItems)
   const handleSubmit = () => {
-    dispatch(addCartToUserCart({product, size: selectedSize.name}))
+    setIsAddedToCart(true)
+    setUserCart(cartItems);
+    dispatch(addCartToUserCart({product, size: selectedSize.name, productid}))
+  }
+
+  const lottieStyle = {
+    height: 100
+  }
+
+  const [isAddedToCart, setIsAddedToCart] = useState(false)
+  const handleHide = () => {
+    setIsAddedToCart(false)
   }
 
   return (
@@ -168,9 +183,14 @@ const ProductView2: React.FC<ProductViewProps> = ({ product, category }) => {
           {/* Options */}
           <div className="mt-4 lg:row-span-3 lg:mt-0">
             <h2 className="sr-only">Product information</h2>
-            <p className="text-3xl tracking-tight text-orange-950">
-              $ {product.price.toLocaleString()}
-            </p>
+            <div className="relative flex justify-start gap-5">
+              <p className="text-3xl tracking-tight text-orange-950">
+                $ {product.price.toLocaleString()}
+              </p>
+              <div className="absolute inset-0 ">
+             {isAddedToCart && <Lottie animationData={atc} loop={false} onComplete={handleHide} style={lottieStyle} />}
+              </div>
+            </div>
 
             <div className="mt-10">
               {/* Sizes */}
@@ -251,10 +271,11 @@ const ProductView2: React.FC<ProductViewProps> = ({ product, category }) => {
               <button
                 type="button"
                 onClick={() => handleSubmit()}
-                className="flex items-center justify-center w-full px-8 py-3 mt-10 text-base font-medium text-white transition-all duration-500 bg-orange-600 border border-transparent rounded-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                className="relative flex items-center justify-center w-full px-8 py-4 mt-10 text-lg font-medium text-white transition-all duration-500 bg-orange-500 border border-transparent rounded-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
               >
                 Add to bag
               </button>
+
             </div>
           </div>
 
