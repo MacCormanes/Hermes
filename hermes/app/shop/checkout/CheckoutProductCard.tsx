@@ -42,7 +42,7 @@ const CheckoutProductCard: React.FC<ProductCardProps1> = ({ product, mens, women
         <span className="mb-1 text-base text-orange-950">
           $ {price.toLocaleString()}
         </span>
-        <span className="mb-1 text-sm font-light text-orange-950">Size: <b className="font-semibold">{selectedProduct!.size}</b></span>
+        <span className="mb-1 text-sm font-light text-orange-950">Size: <b className="font-semibold">{size}</b></span>
         <div className="absolute bottom-0 left-0 text-orange-900 transition-all duration-300 border border-orange-300 rounded-md">
           <Button
             variant="outline"
