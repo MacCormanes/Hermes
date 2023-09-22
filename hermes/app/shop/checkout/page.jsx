@@ -28,6 +28,10 @@ const Checkout = () => {
   const shipping = 50
   const grandTotal = total + taxes + shipping - discount
 
+  const categoriesMap = useAppSelector(state => state.categories.categoriesMap)
+  const mensArray = categoriesMap.mens
+  const womensArray = categoriesMap.womens
+
   useEffect(() => {
     try {
       fetch("/api/create-payment-intent", {
@@ -101,7 +105,7 @@ const Checkout = () => {
           <div id="checkout-cart-scroll" className="pb-4 overflow-y-scroll border-b-2 border-slate-400/30">
             {cartItems.map((product) => (
               <div key={product.id}>
-                <CheckoutProductCard product={product} key={product.id} />
+                <CheckoutProductCard product={product} key={product.id} mens={mensArray} womens={womensArray} />
               </div>
             ))}
           </div>

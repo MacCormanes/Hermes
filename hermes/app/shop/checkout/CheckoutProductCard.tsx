@@ -5,14 +5,13 @@ import Image from "next/image";
 import { addCartToUserCart, decrementItemToUserCart, removeItemToUserCart } from "@/app/rtk-slices/cartSlice";
 import { ProductCardProps1 } from "@/app/components/ui/ItemInCartDropdown";
 
-const CheckoutProductCard: React.FC<ProductCardProps1> = ({ product }) => {
+const CheckoutProductCard: React.FC<ProductCardProps1> = ({ product, mens, womens }) => {
   const { name, price, quantity, imageUrls, size } = product;
-  const cartItems = useAppSelector((state) => state.cart.cartItems);
-  const selectedProduct = cartItems.find((item) => item.id === product.id);
+  const selectedProduct = mens.find(item => item.name === name) || womens.find(item => item.name === name)
   const dispatch = useAppDispatch()
 
   const handleDecrement = () => dispatch(decrementItemToUserCart(product));
-  const handleIncrement = () => dispatch(addCartToUserCart({product, size}))
+  const handleIncrement = () => dispatch(addCartToUserCart({product, size, productid: selectedProduct!.id}))
   const handleRemoveItem = () => dispatch(removeItemToUserCart(product));
 
   return (
