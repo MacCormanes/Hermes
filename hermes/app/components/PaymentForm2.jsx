@@ -61,8 +61,8 @@ export default function PaymentForm2() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "http://localhost:3000/",
-        //return_url: "https://hermes3.vercel.app/shop/payment-successful",
+        //return_url: "http://localhost:3000/",
+        return_url: "https://hermes3.vercel.app/shop/payment-successful",
         receipt_email: email,
       },
     });
