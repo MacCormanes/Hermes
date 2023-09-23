@@ -40,7 +40,7 @@ const CartDropdown = () => {
               <span className="self-center text-lg">$ {formattedNumber}</span>
             </div>
           </SheetTitle>
-          <Button className="w-1/3 mx-8 transition-all duration-500 bg-orange-400 shadow-md shadow-slate-800/30 text-orange-950 hover:bg-orange-300">
+          <Button className="w-1/3 mx-8 transition-all duration-100 bg-orange-400 shadow-md shadow-slate-800/30 text-orange-950 hover:bg-orange-300">
             <Link href="/shop/checkout">CHECKOUT</Link>
           </Button>
         </SheetHeader>

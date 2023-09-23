@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   PaymentElement,
   LinkAuthenticationElement,
@@ -52,8 +52,6 @@ export default function PaymentForm2() {
     e.preventDefault();
 
     if (!stripe || !elements) {
-      // Stripe.js hasn't yet loaded.
-      // Make sure to disable form submission until Stripe.js has loaded.
       return;
     }
 
@@ -63,15 +61,12 @@ export default function PaymentForm2() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "http://localhost:3000/shop/payment-successful",
+        return_url: "http://localhost:3000/",
+        //return_url: "https://hermes3.vercel.app/shop/payment-successful",
+        receipt_email: email,
       },
     });
 
-    // This point will only be reached if there is an immediate error when
-    // confirming the payment. Otherwise, your customer will be redirected to
-    // your `return_url`. For some payment methods like iDEAL, your customer will
-    // be redirected to an intermediate site first to authorize the payment, then
-    // redirected to the `return_url`.
     if (error.type === "card_error" || error.type === "validation_error") {
       setMessage(error.message);
     } else {
@@ -85,23 +80,87 @@ export default function PaymentForm2() {
     layout: "tabs",
   };
 
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
-    <form id="payment-form" onSubmit={handleSubmit}>
-      <h1 className="mb-4 text-xl font-semibold text-center text-orange-900">Paying Securely with Stripe</h1>
-      <LinkAuthenticationElement
-        id="link-authentication-element"
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <PaymentElement
-        id="payment-element"
-        options={paymentElementOptions}
-        className="mt-3 bg-orange-950"
-      />
-      <Button disabled={isLoading || !stripe || !elements} id="submit" className="w-full mt-5">
-        <span id="button-text">
-          {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
-        </span>
-      </Button>
-    </form>
+    <div>
+      {windowSize.width > 1023 ? (
+        <form id="payment-form2" onSubmit={handleSubmit}>
+          <h1 className="inline mb-4 text-lg font-semibold text-center text-orange-900">
+            Paying Securely with Stripe
+          </h1>
+          <LinkAuthenticationElement
+            id="link-authentication-element"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <PaymentElement
+            id="payment-element"
+            options={paymentElementOptions}
+            className="mt-3 bg-orange-950"
+          />
+          <Button
+            disabled={isLoading || !stripe || !elements}
+            id="submit"
+            className="w-full mt-5"
+          >
+            <span id="button-text">
+              {isLoading ? (
+                <div className="spinner" id="spinner"></div>
+              ) : (
+                "Pay now"
+              )}
+            </span>
+          </Button>
+          {message && <div id="payment-message">{message}</div>}
+        </form>
+      ) : (
+        <form id="payment-form1" onSubmit={handleSubmit}>
+          <h1 className="inline mb-4 text-lg font-semibold text-center text-orange-900">
+            Paying Securely with Stripe
+          </h1>
+          <LinkAuthenticationElement
+            id="link-authentication-element"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <PaymentElement
+            id="payment-element"
+            options={paymentElementOptions}
+            className="mt-3 bg-orange-950"
+          />
+          <Button
+            disabled={isLoading || !stripe || !elements}
+            id="submit"
+            className="w-full mt-5"
+          >
+            <span id="button-text">
+              {isLoading ? (
+                <div className="spinner" id="spinner"></div>
+              ) : (
+                "Pay now"
+              )}
+            </span>
+          </Button>
+          {message && <div id="payment-message">{message}</div>}
+        </form>
+      )}
+    </div>
   );
 }

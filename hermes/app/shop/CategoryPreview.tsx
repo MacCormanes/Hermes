@@ -62,7 +62,7 @@ const CategoryPreview = ({ title, products }: CategoryPreviewProps) => {
           Show more...
         </Link>
       </div>
-      <div className="flex overflow-x-auto gap-7" ref={containerRef}>
+      <div className="flex overflow-x-auto gap-7 no-scrollbar" ref={containerRef}>
         {products
           .filter((_, idx) => idx < 8)
           .map((product) => {

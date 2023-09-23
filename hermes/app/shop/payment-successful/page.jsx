@@ -3,6 +3,9 @@
 import Lottie from "lottie-react";
 import ps from "./ps.json";
 import fireworks from './fireworks.json'
+import { useAppDispatch } from "@/app/store/store";
+import { useEffect } from "react";
+import { emptyUserCart } from "@/app/rtk-slices/cartSlice";
 
 const Example = () => {
   const style1 = {
@@ -11,6 +14,12 @@ const Example = () => {
   const style2 = {
     height: 800,
   };
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(emptyUserCart())
+  }, []);
+
   return (
     <div className="relative flex flex-col items-center bg-gradient-to-t from-orange-100 to-orange-200 w-[100vw] h-[100vh]">
       <div className="py-10 mt-10"></div>

@@ -5,8 +5,6 @@ const initialState = {
   userCart: {}
 };
 
-
-
 export const userSlice = createSlice({
   name: "user",
   initialState,
@@ -14,9 +12,12 @@ export const userSlice = createSlice({
     setCurrentUser: (state, action) => {
       state.currentUser = action.payload;
     },
+    signOutCurrentUser: (state) => {
+      state.currentUser = null
+    }
   },
 });
 
-export const { setCurrentUser } = userSlice.actions;
+export const { setCurrentUser, signOutCurrentUser } = userSlice.actions;
 export default userSlice.reducer;
   

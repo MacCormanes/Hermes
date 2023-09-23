@@ -24,6 +24,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { useRouter } from "next/navigation";
 import { setCurrentUser } from "../rtk-slices/userSlice";
 import { useAppDispatch } from "../store/store";
+import { fetchUserCart } from "../rtk-slices/cartSlice";
 
 type FormTypes = {
   email: string;
@@ -98,6 +99,7 @@ const SignIn = () => {
       if (user){
         const formattedUser = user && (({accessToken, email}) => ({accessToken,email}))(user)
         dispatch(setCurrentUser(formattedUser))
+        dispatch(fetchUserCart())
         router.push('/')
       }
     })

@@ -19,18 +19,22 @@ const stripePromise = loadStripe(
 
 const Checkout = () => {
   const [clientSecret, setClientSecret] = useState("");
-  const customerDetailsPage = useAppSelector(state => state.cart.customerDetailsPage)
+  const customerDetailsPage = useAppSelector(
+    (state) => state.cart.customerDetailsPage
+  );
   const total = useAppSelector((state) => state.cart.total);
   const cartItems = useAppSelector((state) => state.cart.cartItems);
   const jsonBody = JSON.stringify(cartItems);
-  const discount = 1000
-  const taxes = total*0.05
-  const shipping = 50
-  const grandTotal = total + taxes + shipping - discount
+  const discount = 1000;
+  const taxes = total * 0.05;
+  const shipping = 5;
+  const grandTotal = total + taxes + shipping - discount;
 
-  const categoriesMap = useAppSelector(state => state.categories.categoriesMap)
-  const mensArray = categoriesMap.mens
-  const womensArray = categoriesMap.womens
+  const categoriesMap = useAppSelector(
+    (state) => state.categories.categoriesMap
+  );
+  const mensArray = categoriesMap.mens;
+  const womensArray = categoriesMap.womens;
 
   useEffect(() => {
     try {
@@ -60,9 +64,9 @@ const Checkout = () => {
       colorTextPlaceholder: "#b45309",
       colorIconTab: "#78350f",
       colorLogo: "dark",
-      colorDanger: '#ef4444',
-      spacingUnit: '4px',
-      spacingGridRow: '15px'
+      colorDanger: "#ef4444",
+      spacingUnit: "4px",
+      spacingGridRow: "15px",
     },
     rules: {
       ".Input, .Block": {
@@ -76,49 +80,71 @@ const Checkout = () => {
     clientSecret,
     appearance,
   };
+  const isBrowser = typeof window !== "undefined";
+
+  const [windowSize, setWindowSize] = useState({
+    width: isBrowser ? window.innerWidth : 0,
+    height: isBrowser ? window.innerHeight : 0,
+  });
+
+  useEffect(() => {
+    if (typeof (window !== "undefined")) {
+      const handleResize = () => {
+        setWindowSize({
+          width: window.innerWidth,
+          height: window.innerHeight,
+        });
+      };
+      window.addEventListener("resize", handleResize);
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
+  }, []);
 
   return (
-    <div className="">
-      <div className="flex h-[100vh]">
-        <div className="w-full bg-gradient-to-br from-orange-200 to-orange-50">
-          <div className="">
-            <div className="w-[32rem]">
-              {customerDetailsPage ? (
-                <div className="flex flex-col">
-                  <CreditCardForm /> 
-                </div>
-              )
-              : <></>}
-              {clientSecret && !customerDetailsPage && total!==0 ? (
-                <Elements options={options} stripe={stripePromise}>
-                    <PaymentForm2 />
-                </Elements>
-              ) : (
-                <></>
-              )}
-              {total === 0 ? <NoItemInCart /> : <></>}
-            </div>
-          </div>
-        </div>
-        <div className="w-full bg-orange-100 ">
+    <div className="debug-screens">
+      <div className="lg:flex">
+        <div className="flex flex-col bg-orange-100 lg:w-1/2">
           <h1 className="p-4 text-lg font-semibold">Your Cart Items</h1>
-          <div id="checkout-cart-scroll" className="pb-4 overflow-y-scroll border-b-2 border-slate-400/30">
-            {cartItems.map((product) => (
-              <div key={product.id}>
-                <CheckoutProductCard product={product} key={product.id} mens={mensArray} womens={womensArray} />
-              </div>
-            ))}
-          </div>
-          <div>
-            <div className="grid w-full max-w-sm items-center gap-1.5 mx-auto my-5">
+          {windowSize.width > 1023 ? (
+            <div
+              id="checkout-cart-scroll"
+              className="flex flex-col items-center border-b-2 border-slate-400/30 justify-content no-scrollbar"
+            >
+              {cartItems.map((product) => (
+                <div key={product.id}>
+                  <CheckoutProductCard
+                    product={product}
+                    key={product.id}
+                    mens={mensArray}
+                    womens={womensArray}
+                  />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="flex flex-col items-center border-b-2 border-slate-400/30 justify-content">
+              {cartItems.map((product) => (
+                <div key={product.id}>
+                  <CheckoutProductCard
+                    product={product}
+                    key={product.id}
+                    mens={mensArray}
+                    womens={womensArray}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div className="flex flex-col items-center justify-center">
+            <div className="grid w-3/4 max-w-sm items-center gap-1.5 my-5">
               <Label htmlFor="text" className="mb-1 text-black/60">
                 Discount Code
               </Label>
               <div className="flex items-center w-full max-w-sm gap-2 mb-4 space-x-3">
-                <Input
-                  type="text"
-                  className="shadow-inner shadow-black/20"
-                />
+                <Input type="text" className="shadow-inner shadow-black/20" />
                 <Button
                   type="button"
                   className="transition-all duration-500 bg-orange-400 shadow-md text-orange-950 hover:bg-orange-500 shadow-black/30"
@@ -180,8 +206,28 @@ const Checkout = () => {
             </div>
           </div>
         </div>
+        <div className="w-full lg:w-1/2 bg-gradient-to-br from-orange-200 to-orange-50">
+          <div className="">
+            <div className="w-[32rem]">
+              {customerDetailsPage ? (
+                <div className="flex flex-col">
+                  <CreditCardForm />
+                </div>
+              ) : (
+                <></>
+              )}
+              {clientSecret && !customerDetailsPage && total !== 0 ? (
+                <Elements options={options} stripe={stripePromise}>
+                  <PaymentForm2 />
+                </Elements>
+              ) : (
+                <></>
+              )}
+              {total === 0 ? <NoItemInCart /> : <></>}
+            </div>
+          </div>
+        </div>
       </div>
-
     </div>
   );
 };

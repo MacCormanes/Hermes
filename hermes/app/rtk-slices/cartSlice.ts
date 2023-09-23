@@ -60,10 +60,19 @@ export const cartSlice = createSlice({
     builder.addCase(changeSizeInUserCart.fulfilled, (state, action) => {
       state.cartItems = action.payload.cartItems;
     });
+    builder.addCase(emptyUserCart.fulfilled, (state, action) => {
+      state.cartItems = action.payload.cartItems;
+      state.cartCount = action.payload.cartCount;
+      state.total = action.payload.total;
+    });
   },
 });
 
-export const fetchUserCart = createAsyncThunk(
+const createAppAsyncThunk = createAsyncThunk.withTypes<{
+  state: RootState;
+}>();
+
+export const fetchUserCart = createAppAsyncThunk(
   "cart/fetchUserCart",
   async () => {
     console.log("fetchUserCart ran");
@@ -94,10 +103,6 @@ export const fetchUserCart = createAsyncThunk(
     }
   }
 );
-
-const createAppAsyncThunk = createAsyncThunk.withTypes<{
-  state: RootState;
-}>();
 
 export const addCartToUserCart = createAppAsyncThunk(
   "cart/addCartToUserCart",
@@ -330,6 +335,32 @@ export const changeSizeInUserCart = createAppAsyncThunk(
     }
   }
 );
+
+export const emptyUserCart = createAppAsyncThunk(
+  "cart/emptyUserCart",
+  async () => {
+    console.log("emptyUserCart Thunk Ran");
+    
+    const newCartItemsArray:any = []
+    const newTotal = 0
+    const newCartCount = 0
+
+    const userRef = doc(db, "users", `${auth.currentUser?.uid}`);
+    await setDoc(
+      userRef,
+      {
+        cart: newCartItemsArray,
+      },
+      { merge: true }
+    );
+
+    return {
+      cartItems: newCartItemsArray,
+      total: newTotal,
+      cartCount: newCartCount,
+    };
+  }
+)
 
 export const { setCustomerDetailsPage } = cartSlice.actions;
 

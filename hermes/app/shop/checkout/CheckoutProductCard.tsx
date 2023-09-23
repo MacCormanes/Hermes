@@ -15,7 +15,7 @@ const CheckoutProductCard: React.FC<ProductCardProps1> = ({ product, mens, women
   const handleRemoveItem = () => dispatch(removeItemToUserCart(product));
 
   return (
-    <div className="flex items-center p-3 ml-5 font-montserrat text-slate-500">
+    <div className="flex items-center p-3 ml-5 font-montserrat text-slate-500 w-[20rem]">
       <div className="flex justify-center mr-5">
         <Image
           src={imageUrls[0]}
@@ -26,8 +26,8 @@ const CheckoutProductCard: React.FC<ProductCardProps1> = ({ product, mens, women
         />
       </div>
       <div className="relative flex flex-col h-[150px] w-3/5">
-        <div className="flex justify-between">
-          <h2 className="w-10/12 text-lg font-medium text-orange-950">{name}</h2>
+        <div className="flex justify-between gap-2">
+          <h2 className="w-10/12 text-sm font-medium sm:text-base text-orange-950">{name}</h2>
           <button className="relative w-2/12 h-[30px]">
             <Image
               src="/icons/trash.svg"

@@ -29,8 +29,10 @@ import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/app/store/store";
 import { addCartToUserCart } from "@/app/rtk-slices/cartSlice";
 import Lottie from "lottie-react";
-import atc from '../../../../app/components/ui/Animations/add-to-cart.json'
+import atc from "../../../../app/components/ui/Animations/add-to-cart.json";
 import { setUserCart } from "@/firebase/firebase.utils";
+import { useToast } from "@/components/ui/use-toast"
+import { Toaster } from "@/components/ui/toaster"
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -50,13 +52,17 @@ export type CartProduct = {
 type ProductViewProps = {
   product: CartProduct;
   category: string;
-  productid: string
+  productid: string;
 };
 
-const ProductView2: React.FC<ProductViewProps> = ({ product, category, productid }) => {
-  const dispatch = useAppDispatch()
+const ProductView2: React.FC<ProductViewProps> = ({
+  product,
+  category,
+  productid,
+}) => {
+  const dispatch = useAppDispatch();
 
-  const breadcrumbCategory = category === 'mens' ? 'Mens' : 'Womens'
+  const breadcrumbCategory = category === "mens" ? "Mens" : "Womens";
   const sizes = [
     { name: "XXS", inStock: false },
     { name: "XS", inStock: true },
@@ -67,34 +73,38 @@ const ProductView2: React.FC<ProductViewProps> = ({ product, category, productid
     { name: "2XL", inStock: true },
     { name: "3XL", inStock: true },
   ];
-  const colors = [
-    { name: "White", class: "bg-white", selectedClass: "ring-gray-400" },
-    { name: "Gray", class: "bg-gray-200", selectedClass: "ring-gray-400" },
-    { name: "Black", class: "bg-gray-900", selectedClass: "ring-gray-900" },
-  ];
 
   const breadcrumbs = [
     { id: 1, name: "Categories", href: "/shop" },
     { id: 2, name: `${breadcrumbCategory}`, href: `/shop/${category}` },
   ];
 
-  const [selectedSize, setSelectedSize] = useState(sizes[2]);
-  const cartItems = useAppSelector(state => state.cart.cartItems)
+  const [selectedSize, setSelectedSize] = useState({
+    name: "Not Set",
+    inStock: false,
+  });
+  const cartItems = useAppSelector((state) => state.cart.cartItems);
   const handleSubmit = () => {
-    setIsAddedToCart(true)
-    setUserCart(cartItems);
-    dispatch(addCartToUserCart({product, size: selectedSize.name, productid}))
-  }
+    if (selectedSize.inStock) {
+      setIsAddedToCart(true);
+      setSelectedSize({ name: "Not Set", inStock: false });
+      setUserCart(cartItems);
+      dispatch(
+        addCartToUserCart({ product, size: selectedSize.name, productid })
+      );
+    }
+  };
 
   const lottieStyle = {
-    height: 100
-  }
+    height: 100,
+  };
 
-  const [isAddedToCart, setIsAddedToCart] = useState(false)
+  const [isAddedToCart, setIsAddedToCart] = useState(false);
   const handleHide = () => {
-    setIsAddedToCart(false)
-  }
+    setIsAddedToCart(false);
+  };
 
+  const { toast } = useToast()
   return (
     <div className="bg-gradient-to-b from-orange-200 via-orange-100 to-orange-300">
       <div className="pt-6">
@@ -112,7 +122,10 @@ const ProductView2: React.FC<ProductViewProps> = ({ product, category, productid
                   >
                     {breadcrumb.name}
                   </Link>
-                  <Separator orientation="vertical" className="h-5 bg-orange-600"/>
+                  <Separator
+                    orientation="vertical"
+                    className="h-5 bg-orange-600"
+                  />
                 </div>
               </li>
             ))}
@@ -141,34 +154,37 @@ const ProductView2: React.FC<ProductViewProps> = ({ product, category, productid
           </div>
           <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
             <div className="overflow-hidden rounded-lg shadow-md aspect-h-2 aspect-w-3 shadow-black/40">
-            <Image
-              src={product.imageUrls[2]}
-              alt={product.name}
-              width={800}
-              height={800}
-              className="object-cover object-center w-full h-full"
+              <Image
+                src={product.imageUrls[2]}
+                alt={product.name}
+                width={800}
+                height={800}
+                className="object-cover object-center w-full h-full"
               />
             </div>
-            {product.imageUrls[3] ? ( 
-            <div className="overflow-hidden rounded-lg shadow-md aspect-h-2 aspect-w-3 shadow-black/40">
-            <Image
-              src={product.imageUrls[3]}
-              alt={product.name}
-              width={800}
-              height={800}
-              className="object-cover object-center w-full h-full"
-              />
-            </div> ): (<></>)}
+            {product.imageUrls[3] ? (
+              <div className="overflow-hidden rounded-lg shadow-md aspect-h-2 aspect-w-3 shadow-black/40">
+                <Image
+                  src={product.imageUrls[3]}
+                  alt={product.name}
+                  width={800}
+                  height={800}
+                  className="object-cover object-center w-full h-full"
+                />
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
 
           <div className="shadow-lg aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg shadow-black/40">
-          <Image
+            <Image
               src={product.imageUrls[0]}
               alt={product.name}
               width={800}
               height={800}
               className="object-cover object-center w-full h-full"
-            /> 
+            />
           </div>
         </div>
 
@@ -188,7 +204,14 @@ const ProductView2: React.FC<ProductViewProps> = ({ product, category, productid
                 $ {product.price.toLocaleString()}
               </p>
               <div className="absolute inset-0 ">
-             {isAddedToCart && <Lottie animationData={atc} loop={false} onComplete={handleHide} style={lottieStyle} />}
+                {isAddedToCart && (
+                  <Lottie
+                    animationData={atc}
+                    loop={false}
+                    onComplete={handleHide}
+                    style={lottieStyle}
+                  />
+                )}
               </div>
             </div>
 
@@ -196,7 +219,7 @@ const ProductView2: React.FC<ProductViewProps> = ({ product, category, productid
               {/* Sizes */}
               <div className="mt-10">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-sm font-medium text-orange-950">Size</h3>
+                  <h3 className="text-lg font-medium text-orange-950">Size</h3>
                 </div>
 
                 <RadioGroup
@@ -218,7 +241,9 @@ const ProductView2: React.FC<ProductViewProps> = ({ product, category, productid
                             size.inStock
                               ? "cursor-pointer bg-orange-100 text-orange-950 shadow-sm"
                               : "cursor-not-allowed bg-orange-50 text-orange-200 pointer-events-none",
-                            active ? "ring-2 ring-orange-500 bg-orange-300" : "",
+                            active
+                              ? "ring-2 ring-orange-500 bg-orange-300"
+                              : "",
                             "transition-all duration-500 group relative flex items-center justify-center rounded-md border border-orange-800 py-3 px-4 text-sm font-medium uppercase hover:bg-orange-300 focus:outline-none sm:flex-1 sm:py-6"
                           )
                         }
@@ -267,15 +292,27 @@ const ProductView2: React.FC<ProductViewProps> = ({ product, category, productid
                   </div>
                 </RadioGroup>
               </div>
-
-              <button
-                type="button"
-                onClick={() => handleSubmit()}
-                className="relative flex items-center justify-center w-full px-8 py-4 mt-10 text-lg font-medium text-white transition-all duration-500 bg-orange-500 border border-transparent rounded-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
-              >
-                Add to bag
-              </button>
-
+              {selectedSize.inStock ? (
+                <button
+                  type="button"
+                  onClick={() => handleSubmit()}
+                  className="relative flex items-center justify-center w-full px-8 py-4 mt-10 text-lg font-medium text-white transition-all duration-500 bg-orange-500 border border-transparent rounded-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+                >
+                  Add to bag
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => {
+                    toast({
+                      description: "Please choose a size first",
+                    })
+                  }}
+                  className="relative flex items-center justify-center w-full px-8 py-4 mt-10 text-lg font-medium text-white transition-all duration-500 bg-orange-500 border border-transparent rounded-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+                >
+                  Add to bag
+                </button>
+              )}
             </div>
           </div>
 
@@ -344,6 +381,7 @@ const ProductView2: React.FC<ProductViewProps> = ({ product, category, productid
           </div>
         </div>
       </div>
+      <Toaster />
     </div>
   );
 };

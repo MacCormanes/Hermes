@@ -14,7 +14,7 @@ const CategoryView = ({ title, products }: CategoryPreviewProps) => {
             <ProductCard product={product} category={title} key={product.name}/>
           );
         })}
-      </div>∂
+      </div>
     </div>
   );
 };

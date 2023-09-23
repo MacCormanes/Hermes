@@ -41,7 +41,7 @@ const CreditCardForm = () => {
   return (
     <form
       onSubmit={handleSubmit(handleTransition)}
-      className="flex flex-col justify-center gap-3 mx-auto mt-[7rem] w-[30rem]"
+      className="flex flex-col justify-center gap-3 mx-auto my-12 lg:my-56 lg:w-96 sm:w-96 w-80"
     >
       <h1 className="text-xl font-semibold text-center text-orange-900">Required Payment Details</h1>
       <div>
@@ -105,7 +105,7 @@ const CreditCardForm = () => {
           />
         </div>
         <div>
-          <Label className="text-orange-950/70">State / Province</Label>
+          <Label className="text-orange-950/70">Province</Label>
           <Controller
             name="province"
             control={control}
@@ -119,7 +119,7 @@ const CreditCardForm = () => {
           />
         </div>
         <div>
-          <Label className="text-orange-950/70">Postal Code</Label>
+          <Label className="text-orange-950/70">Zip Code</Label>
           <Controller
             name="postalCode"
             control={control}
@@ -137,7 +137,7 @@ const CreditCardForm = () => {
       <Button
                   id="transition-button"
                   type="submit"
-                  className="transition-all duration-500 bg-orange-400 shadow-md text-orange-950 hover:bg-orange-500 shadow-black/30"
+                  className="my-1 transition-all duration-500 bg-orange-400 shadow-md text-orange-950 hover:bg-orange-500 shadow-black/30"
                 >
                   Continue Payment Process
                 </Button>

@@ -14,22 +14,28 @@
       scrollbar-width: none; /* Firefox */
     }
 
-    #payment-form {
-      width: 32rem;
+    #payment-form1 {
+      width: 20rem;
       display: flex;
+      padding: 5rem 0 5rem 0;
       flex-direction: column;
-      margin: 5rem auto;
+      margin: 0 auto;
     }
 
-    #transition-button {
+    #payment-form2 {
       width: 30rem;
-      margin: 2rem auto
+      display: flex;
+      flex-direction: column;
+      margin: 200px auto
     }
 
     #checkout-cart-scroll {
-      height: 23rem;
+      height: 30rem;
       overflow-y: auto;
-      
+    }
+
+    .stripe {
+      color: "#9333ea"
     }
   }
   
@@ -42,6 +48,10 @@
       @apply relative inset-0 object-cover transform rounded-3xl;
     }
   
+    .checkout-cart {
+      @apply h-96
+    }
+    
   
     .card-text {
       @apply relative text-orange-200 pointer-events-none ;
