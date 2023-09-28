@@ -103,7 +103,7 @@ const Checkout = () => {
   }, []);
 
   return (
-    <div className="debug-screens">
+    <div className="">
       <div className="lg:flex">
         <div className="flex flex-col bg-orange-100 lg:w-1/2">
           <h1 className="p-4 text-lg font-semibold">Your Cart Items</h1>

@@ -8,7 +8,7 @@ import BackToTopButton from "./components/ui/Animations/BackToTopButton";
 
 export default function Home() {
   return (
-    <div className="font-montserrat bg-gradient-to-t from-orange-100 to-orange-200 debug-screens">
+    <div className="grid font-montserrat bg-gradient-to-t from-orange-100 to-orange-200 debug-screens">
       <PrimaryHero />
       <Directory />
       <SecondaryHero />
