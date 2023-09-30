@@ -112,9 +112,6 @@ const Navbar = () => {
               <Link className="" href="/shop/womens">
                 <span className="">Women</span>
               </Link>
-              <Link className="" href="/">
-                <span className="">About</span>
-              </Link>
               <Link className="" href="/shop">
                 <span className="">Shop</span>
               </Link>
